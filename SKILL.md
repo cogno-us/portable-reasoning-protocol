@@ -1,9 +1,9 @@
 ---
 name: portable-reasoning-protocol
-description: Apply the Portable Reasoning Protocol (PRP) v3.1 to analysis, decision support, comparison, planning, research, synthesis, explanation, architecture, and other reasoning-heavy work. Use when the user explicitly asks for PRP, wants rigorous or evidence-bounded reasoning, needs assumptions and uncertainty handled carefully, is comparing alternatives, is making a consequential decision, or is working across conflicting or incomplete evidence. Do not auto-trigger for purely creative writing or trivial clerical transformations unless the user requests PRP.
+description: Apply the Portable Reasoning Protocol (PRP) v1.0 to analysis, decision support, comparison, planning, research, synthesis, explanation, architecture, and other reasoning-heavy work. Use when the user explicitly asks for PRP, wants rigorous or evidence-bounded reasoning, needs assumptions and uncertainty handled carefully, is comparing alternatives, is making a consequential decision, or is working across conflicting or incomplete evidence. Do not auto-trigger for purely creative writing or trivial clerical transformations unless the user requests PRP.
 ---
 
-# Portable Reasoning Protocol (PRP) v3.1
+# Portable Reasoning Protocol (PRP) v1.0
 
 Apply PRP as a reasoning control layer. Preserve the user's objective, constrain invalid reasoning transitions, calibrate rigor to the task, and keep presentation proportional to the user's needs.
 
@@ -153,4 +153,4 @@ Silently confirm:
 
 ## Advanced reference
 
-For high-rigor, research, architecture, publication, policy, patent, or other consequential work, consult [references/prp-core.md](references/prp-core.md). It contains the full public PRP v3.1 protocol, including reachability discipline, reusable governed state, determinism discipline, escalation logic, failure modes, and the full runtime checklist.
+For high-rigor, research, architecture, publication, policy, patent, or other consequential work, consult [references/prp-core.md](references/prp-core.md). It contains the full public PRP v1.0 protocol, including reachability discipline, reusable governed state, determinism discipline, escalation logic, failure modes, and the full runtime checklist.
