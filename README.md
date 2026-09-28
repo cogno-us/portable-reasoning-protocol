@@ -1,12 +1,12 @@
-# Portable Reasoning Protocol (PRP) v3.1
+# Portable Reasoning Protocol (PRP) v1.0
 
 **A portable reasoning layer for more rigorous, evidence-bounded AI work.**
 
-Developed by **Cognous**.
+Developed by **[Cognous](https://cogno.us)**.
 
 PRP is a reusable reasoning protocol for general-purpose AI systems. It is designed to improve the quality of analysis without forcing every task into heavyweight governance. The protocol adapts its rigor to the task: simple work stays simple; consequential, ambiguous, evidentiary, novel, or difficult-to-reverse work receives deeper scrutiny.
 
-This repository packages PRP v3.1 as a `SKILL.md`-based Skill so the protocol can be inspected, versioned, forked, tested, and reused.
+This repository packages PRP v1.0 as a `SKILL.md`-based Skill so the protocol can be inspected, versioned, forked, tested, and reused.
 
 ## What PRP is
 
@@ -137,7 +137,7 @@ PRP does **not**:
 - turn every interaction into a compliance workflow;
 - substitute a model's decision for the user's.
 
-It is a prompt- and Skill-level reasoning discipline. Its purpose is to reduce invalid reasoning paths and make errors easier to detect, not to claim perfect control.
+It is an instruction- and Skill-level reasoning discipline. Its purpose is to reduce invalid reasoning paths and make errors easier to detect, not to claim perfect control.
 
 ## Repository structure
 
@@ -145,17 +145,27 @@ It is a prompt- and Skill-level reasoning discipline. Its purpose is to reduce i
 portable-reasoning-protocol/
 ├── SKILL.md
 ├── README.md
+├── INSTALLATION.md
 ├── agents/
 │   └── openai.yaml
 └── references/
     └── prp-core.md
 ```
 
-`SKILL.md` is intentionally compact. It acts as the runtime control plane. The complete public protocol lives in `references/prp-core.md` and can be loaded when a task requires deeper rigor.
+`SKILL.md` is intentionally compact. It acts as the runtime control plane. The advanced public protocol lives in `references/prp-core.md` and can be loaded when a task requires deeper rigor.
 
-## Using the Skill
+## Installation
 
-Install the Skill through a compatible Skills interface or add the repository contents to a supported agent environment.
+See **[INSTALLATION.md](INSTALLATION.md)** for platform-specific instructions for:
+
+- ChatGPT
+- Claude
+- Gemini
+- GitHub Copilot
+
+The guide distinguishes native Agent Skill installation from compatibility approaches on platforms that use a different customization mechanism.
+
+## Using PRP
 
 Typical requests include:
 
@@ -167,7 +177,7 @@ Typical requests include:
 - `Treat this as publication-grade analysis.`
 - `Give me the decision first, then the evidence and material caveats.`
 
-The Skill can also be invoked automatically for analysis-heavy tasks when the host system supports Skill triggering.
+Where the host supports skill triggering, PRP can also be selected automatically when its description matches the task.
 
 ## User controls
 
@@ -217,15 +227,15 @@ This approach is intended to make model outputs more inspectable and decision-us
 
 ## Relationship to enterprise systems
 
-The public PRP Skill operates at the prompt and workflow layer. That makes it useful for individual and team reasoning, experimentation, education, and benchmarking.
+The public PRP Skill operates at the instruction and workflow layer. That makes it useful for individual and team reasoning, experimentation, education, and benchmarking.
 
 Production enterprise systems may require additional mechanisms such as persistent state, policy enforcement, observability, provenance, access control, auditability, runtime interception, and deterministic execution controls. Those capabilities are outside the scope of this Skill.
 
 ## Versioning
 
-This package is based on **PRP v3.1**. Changes to the runtime Skill should preserve the underlying protocol's core invariants unless a future version explicitly revises them.
+This public package is **PRP v1.0**.
 
-When modifying PRP, distinguish:
+The v1.0 designation marks the first public Skill release. Future changes should distinguish:
 
 - editorial changes;
 - implementation changes;
@@ -258,6 +268,6 @@ Use PRP to improve reasoning discipline, not as evidence that an answer is corre
 
 ---
 
-**Portable Reasoning Protocol (PRP) v3.1**  
-Developed by **Cognous**  
+**Portable Reasoning Protocol (PRP) v1.0**  
+Developed by **[Cognous](https://cogno.us)**  
 Governed reasoning infrastructure for AI systems.
