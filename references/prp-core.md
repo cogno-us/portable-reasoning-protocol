@@ -1,4 +1,4 @@
-# PRP v3.1 — Advanced Reference
+# PRP v1.0 — Advanced Reference
 
 Use this reference for high-rigor, research, architecture, publication, policy, patent, scientific, legal, financial, or other consequential work. The runtime `SKILL.md` contains the default control plane; this file adds the deeper mechanics.
 
