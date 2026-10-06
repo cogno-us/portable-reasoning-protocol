@@ -297,3 +297,8 @@ Use PRP to improve reasoning discipline, not as evidence that an answer is corre
 **Portable Reasoning Protocol (PRP) v1.0**  
 Developed by **[Cognous](https://cogno.us)**  
 Governed reasoning infrastructure for AI systems.
+
+## License
+
+Cognous-owned original material is licensed under [Apache 2.0](LICENSE).
+See [NOTICE](NOTICE) for attribution and third-party scope. Prior license grants remain valid.
