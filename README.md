@@ -146,8 +146,13 @@ portable-reasoning-protocol/
 ├── SKILL.md
 ├── README.md
 ├── INSTALLATION.md
+├── STACK_INTEGRATION.md
+├── CHANGELOG.md
 ├── agents/
 │   └── openai.yaml
+├── evaluations/
+│   ├── README.md
+│   └── cases.yaml
 └── references/
     └── prp-core.md
 ```
@@ -231,6 +236,23 @@ The public PRP Skill operates at the instruction and workflow layer. That makes 
 
 Production enterprise systems may require additional mechanisms such as persistent state, policy enforcement, observability, provenance, access control, auditability, runtime interception, and deterministic execution controls. Those capabilities are outside the scope of this Skill.
 
+## Optional Cognous stack integration
+
+PRP remains independently usable and has no mandatory dependency on the Cognous Open Source Stack.
+
+See **[STACK_INTEGRATION.md](STACK_INTEGRATION.md)** for the optional handoff model. It explains how PRP can preserve claim status, uncertainty, competing explanations, source/tool attribution, and action-state distinctions before a downstream authority or runtime system makes its own decision.
+
+The integration note explicitly keeps separate:
+
+- reasoning effort;
+- evidence quality;
+- institutional consequence;
+- authorization state;
+- execution status;
+- observation status.
+
+Reasoning rigor does not grant permission, and PRP does not authenticate authority or prove that an external effect occurred.
+
 ## Versioning
 
 This public package is **PRP v1.0**.
@@ -259,6 +281,10 @@ Useful contributions include:
 - examples where PRP changes a conclusion rather than merely changing presentation.
 
 A strong benchmark should test whether the protocol changes reasoning quality, not whether it merely produces more structured prose.
+
+The repository now includes a reproducible **[behavioral evaluation suite](evaluations/README.md)** with canonical cases in **[evaluations/cases.yaml](evaluations/cases.yaml)**. The suite separates substantive decision correction from formatting compliance and requires baseline-versus-PRP runs to record model/version, settings, inputs, outputs, and evaluator provenance.
+
+Behavioral cases are marked **unexecuted** unless an actual model run is recorded. Static/package validation does not establish behavioral effectiveness.
 
 ## Important limitation
 
