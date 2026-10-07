@@ -169,3 +169,24 @@ Do not infer effectiveness from:
 Do not incur paid model-evaluation costs merely to populate this repository.
 
 Behavioral runs may be added later when an authorized evaluation environment is available. Report free/local runs separately from paid or production runs if those are ever performed.
+## 9. Reasoning-allocation evaluation
+
+The optional reasoning-allocation work adds [`routing-cases.yaml`](routing-cases.yaml).
+
+For each routing case, compare four conditions where the platform permits them:
+
+1. fast/low baseline;
+2. fixed medium reasoning;
+3. fixed high/maximum reasoning;
+4. PRP-routed reasoning.
+
+Report substantive score and critical failures together with reasoning tokens (if exposed), total tokens, wall-clock latency and estimated cost (if available). Do not substitute a composite metric for the underlying measurements.
+
+Also classify routing errors:
+
+- **under-escalation:** insufficient rigor causes or materially contributes to a substantive error;
+- **over-escalation:** added reasoning/process materially increases cost or latency without a task-relevant quality benefit.
+
+The target hypothesis is that PRP routing can approach high-effort substantive quality on a mixed workload while using less reasoning compute than routing every task at high effort. This is a hypothesis to test, not a current performance claim.
+
+All routing cases remain **unexecuted** until named model runs are recorded with the provenance requirements above.
