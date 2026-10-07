@@ -1,8 +1,20 @@
 # Changelog
 
-## Unreleased
+## v1.1 — 2026-10-07
 
-### Public control profile 1.0.0 (PRP v1.0 lineage)
+### Protocol semantics
+
+- Added an explicit distinction among requested depth, automatic depth, mandatory reasoning floor, and effective depth.
+- Clarified that user requests for less rigor cannot reduce reasoning beneath the minimum required for truth, safety, legality, authority, consequence, or material evidentiary quality.
+- Added a context and instruction trust boundary for task/session instructions, retrieved material, attachments, quoted text, tool output, and supplied documents.
+- Clarified that retrieved or supplied content is evidence or task context, not an active instruction channel merely because it contains imperative language.
+- Clarified that task context cannot silently rewrite non-disableable safeguards, lower the mandatory floor, create authority, grant permission, or promote unsupported claim modes.
+- Added behavioral regression cases for mandatory-floor preservation and task-context attempts to disable PRP safeguards.
+- No runtime enforcement, persistence, provider, identity, authorization, or execution capability is claimed by this release.
+
+### Public control profile 1.0.0 integrated with v1.1
+
+- Preserved the merged v1.1 mandatory-floor and context trust-boundary semantics. The control-profile version is separate from the public protocol version.
 
 - Made proposed, minimum and effective levels explicit, with stable rule IDs, a depth-request mapping, constrained overrides and cumulative required components.
 - Kept core safeguards and the routine-task fast path in a compact entrypoint; expanded detail is progressively loaded.

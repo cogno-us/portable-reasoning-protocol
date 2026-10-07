@@ -59,3 +59,10 @@ No behavioral model runs, compression ablations, instruction-activation tests, c
 PRP name and public v1.0 lineage are retained. Control profile 1.0.0 is new and changes operational instructions; it is not presented as a cosmetic patch. Existing ReasoningPlan v1.0 consumers retain their schema. A structured control record is separate, optional and selection-only. The offline helper accepts supplied rule matches; it does not determine whether those matches are substantively correct.
 
 No dependency on another Cognous component was introduced. Core safeguards, source/public IP boundaries, existing license notices, README banner, bibliography, accepted hub pins and historical collateral were preserved. The separate PRP 3.1 application was not modified. Merge and downstream hub adoption remain separate acceptance decisions.
+
+
+## Integration with merged public v1.1 — 2026-10-07
+
+The earlier measurements and v1.0 status above describe the reviewed proposal at that checkpoint. This integration preserves the subsequently merged public v1.1 mandatory-floor and context/instruction trust-boundary text and behavioral cases. The control profile remains independently versioned 1.0.0; source-lineage links now follow the v1.1 section numbering. The calculator remains selection-only, and no behavioral model evaluation or hub-pin advancement is claimed.
+
+Validation after reconciliation: 20 unit tests passed; package JSON/YAML, local links/anchors, frontmatter and schema/example checks passed.

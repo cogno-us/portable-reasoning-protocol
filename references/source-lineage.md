@@ -49,18 +49,18 @@ The source section numbers below refer to the supplied v3.1 text, not to the sho
 | 14. Evidence Discipline | SKILL evidence section and [core detail](prp-core.md#7-evidence-discipline); relevant sources must support the actual claim. |
 | 15. Assumption Discipline | SKILL evidence section and [core detail](prp-core.md#8-assumption-discipline); material assumptions and sensitivity retained. |
 | 16. Scope and Authority Control | [Authority and actions](../SKILL.md#authority-actions-and-blocked-checks); expertise/capability cannot confer authorization. |
-| 17. Negative Records | SKILL reachability section and [core detail](prp-core.md#10-negative-records); material records retained when context permits, with reopening conditions. |
-| 18. Reusable Governed State | SKILL continuity section and [core detail](prp-core.md#11-reusable-governed-state); authorized context reuse only, no storage guarantee. |
-| 19. Determinism Discipline | [Core detail](prp-core.md#12-determinism-discipline); narrow arithmetic reproducibility is not deterministic model judgment or wording. |
+| 17. Negative Records | SKILL reachability section and [core detail](prp-core.md#11-negative-records); material records retained when context permits, with reopening conditions. |
+| 18. Reusable Governed State | SKILL continuity section and [core detail](prp-core.md#12-reusable-governed-state); authorized context reuse only, no storage guarantee. |
+| 19. Determinism Discipline | [Core detail](prp-core.md#13-determinism-discipline); narrow arithmetic reproducibility is not deterministic model judgment or wording. |
 | 20. Communication Discipline | SKILL controls and [stabilization](../SKILL.md#final-stabilization); clarity, directness and proportionality retained. |
 | 21. Preferred Output Structure | SKILL stabilization; headings only when useful, not a scoring substitute for correctness. |
 | 22. Efficiency and Proportionality | SKILL compact procedure, Level 0 path and optional records; no forced script/JSON/reference loading per routine response. |
-| 23. Failure Modes to Watch | [Core detail](prp-core.md#13-failure-modes-to-watch) plus targeted regression cases; no guarantee of detection. |
-| 24. Escalation and Refusal | SKILL blockers and [core detail](prp-core.md#14-escalation-and-refusal); narrow, clarify or withhold when needed rather than fabricate. |
-| 25. Non-Disableable Safeguards | SKILL invariants plus [core detail](prp-core.md#15-non-disableable-safeguards); controls cannot disable integrity requirements. |
-| 26. Compact Runtime Checklist | SKILL stabilization plus [core checklist](prp-core.md#16-full-runtime-checklist); check completion is distinct from selection metadata. |
+| 23. Failure Modes to Watch | [Core detail](prp-core.md#14-failure-modes-to-watch) plus targeted regression cases; no guarantee of detection. |
+| 24. Escalation and Refusal | SKILL blockers and [core detail](prp-core.md#15-escalation-and-refusal); narrow, clarify or withhold when needed rather than fabricate. |
+| 25. Non-Disableable Safeguards | SKILL invariants plus [core detail](prp-core.md#16-non-disableable-safeguards); controls cannot disable integrity requirements. |
+| 26. Compact Runtime Checklist | SKILL stabilization plus [core checklist](prp-core.md#17-full-runtime-checklist); check completion is distinct from selection metadata. |
 | 27. Installation Instruction | Single adaptive entrypoint preserved; employee-only standing mandate generalized to user/host activation. A conditional Skill is not automatically persistent on every platform. |
-| 28. Final Principle | SKILL invariants and [core final principle](prp-core.md#17-final-principle); accuracy, agency and proportionality over appearance. |
+| 28. Final Principle | SKILL invariants and [core final principle](prp-core.md#18-final-principle); accuracy, agency and proportionality over appearance. |
 
 ## Compression policy
 
