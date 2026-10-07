@@ -13,7 +13,7 @@
 ```
 <!-- cognous-banner:end -->
 
-# Portable Reasoning Protocol v1.0
+# Portable Reasoning Protocol v1.1
 
 **Portable instructions for evidence-bounded reasoning.**
 
@@ -33,9 +33,10 @@ Engineers can inspect the reference contracts and examples; enterprise architect
 
 | Capability | Implemented or specified responsibility |
 |---|---|
-| **Adaptive rigor** | Escalate scrutiny when consequence, uncertainty, novelty or irreversibility increases. |
+| **Adaptive rigor** | Escalate scrutiny when consequence, uncertainty, novelty or irreversibility increases, with a mandatory minimum reasoning floor for consequential work. |
 | **Claim discipline** | Separate observed, inferred, estimated, hypothetical, normative and unknown statements. |
 | **Hallucination controls** | Instruct the model not to fabricate facts, citations, capabilities, tool results or completed actions. |
+| **Context trust boundary** | Treat task context, retrieved content, attachments and quoted instructions as content unless they are actually active instructions; content cannot silently lower safeguards or create authority. |
 | **Agency preservation** | Present material tradeoffs and avoid manipulative pressure or unnecessary requests. |
 | **Optional handoff** | Preserve proposal/evidence distinctions for downstream systems without creating authority. |
 
@@ -45,13 +46,22 @@ A user supplies a decision question and asks PRP to distinguish facts, assumptio
 
 A valid signature, chain inclusion, message receipt, reasoning instruction or evidence-package digest does not authorize execution. Institutional authority must be supplied and evaluated through the appropriate trusted boundary.
 
+## v1.1 alignment
+
+PRP v1.1 incorporates two implementation-derived clarifications while preserving the existing core invariants:
+
+- user-requested analysis depth is distinct from the mandatory minimum reasoning floor required by consequence, authority, safety and evidence;
+- task/session context and retrieved or supplied content may specialize the work but cannot silently rewrite non-disableable safeguards, become authority, or act as a higher-priority instruction channel merely because they contain imperative text.
+
+These are behavioral protocol semantics. They do not add runtime enforcement, persistence, hashing, identity, authorization, or execution controls.
+
 ## Getting started
 
 Read [SKILL.md](SKILL.md), then follow [INSTALLATION.md](INSTALLATION.md) for the platform's supported instruction mechanism. Start with one ordinary analysis task; request explicit assumptions and evidence status rather than a fixed answer length. Treat platform-specific activation instructions as configuration guidance, not evidence that a model follows every rule. Use [the evaluation protocol](evaluations/README.md) to measure behavior under a named model/version and configuration.
 
 ## Evidence and supported scope
 
-The hub selects a pinned PRP v1.0 instruction artifact as an optional layer. Its recorded checks are static artifact/JSON checks only. The [evaluation suite](evaluations/README.md) defines baseline-versus-PRP comparisons; it supplies no general claim of measured uplift, safety or model-independent efficacy.
+The hub selects a pinned PRP v1.1 instruction artifact as an optional layer. Its recorded checks are static artifact/JSON checks only. The [evaluation suite](evaluations/README.md) defines baseline-versus-PRP comparisons; it supplies no general claim of measured uplift, safety or model-independent efficacy.
 
 The accepted [hub persistence-generation evidence](https://github.com/cogno-us/cognous-open-control-stack/blob/5737267d94d2b445735c95e8480a31de73a2abe8/examples/control-plane-store-adoption/qualification-summary.json) records 915 Python tests in each of two repetitions, 35 matrix entries satisfying their gates and 120 separate mocked OpenShell tests. Those are aggregate hub results, not a per-component test count or a claim of production readiness. Optional behavioral layers receive static checks only. The [support ledger](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/release-status.md) separates implementation, execution and adoption.
 
