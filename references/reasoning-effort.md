@@ -1,91 +1,37 @@
 # Reasoning Effort and Allocation
 
-PRP v1.0 separates **how much reasoning a task deserves** from any provider-specific token budget, model name, or API parameter.
+PRP v1.0 separates the scrutiny a task warrants from provider-specific model names, API parameters and token budgets. This optional allocation interface does not make PRP a model router or enforcement layer.
 
-This document defines an optional, portable reasoning-allocation contract. It does not change PRP's core invariants and does not make PRP a model router or runtime enforcement layer.
+## Contents
 
-## Design principle
+- [Semantic control before compute](#semantic-control-before-compute)
+- [ReasoningPlan](#reasoningplan)
+- [Verification and escalation](#verification-and-escalation)
+- [Agent loops](#agent-loops)
+- [Evaluation and limits](#evaluation-and-limits)
 
-PRP should answer a semantic question:
+## Semantic control before compute
 
-> What level of reasoning rigor is warranted by this task?
-
-A separate runtime may translate that answer into provider-specific controls.
+Use the levels and mandatory floors in [SKILL.md](../SKILL.md), with the exact override/bundle semantics in [runtime control](runtime-control.md). Do not maintain a competing level-to-floor policy here.
 
 ```text
-request
-  ↓
-PRP semantic classification
-  ↓
-ReasoningPlan
-  ↓
-provider/runtime adapter
-  ↓
-model + effort/budget selection
-  ↓
-verification
-  ↓
-answer or escalation
+request -> semantic classification -> proposed level + task floor
+        -> user-depth adjustment -> effective level and required checks
+        -> optional ReasoningPlan -> external provider/runtime mapping
+        -> actual verification or an explicit blocked check
 ```
 
-Do not hard-code token budgets into PRP levels.
+Keep reasoning effort, evidence quality, institutional consequence, authorization, execution and observation separate. An easy-to-read request can involve a consequential action. A long research question can have no action authority at all. Increasing scrutiny cannot establish permission.
 
-## Independent dimensions
+The control profile requires the highest applicable floor; its rule IDs express public source-derived task categories. Consequential reliance and current-authority judgments have a Level 3 floor, while novel research creation has Level 4. Mere keywords in a source-preserving transformation do not trigger these judgments. Missing material facts require clarification or a bounded conclusion rather than an invented low-risk classification.
 
-Keep these dimensions separate:
+## ReasoningPlan
 
-- reasoning effort;
-- evidence quality;
-- institutional consequence;
-- authorization state;
-- execution status;
-- observation status.
+The existing [ReasoningPlan v1.0 schema](../schemas/reasoning-plan.schema.json) remains unchanged. It communicates advisory effort intent. The new [control-record schema](../schemas/runtime-control.schema.json) is separate and does not add fields to that closed schema.
 
-A task can be easy to reason about but high consequence. A task can be difficult but low consequence. A high PRP reasoning level does not grant permission.
+When both are emitted for the same task, keep `ReasoningPlan.level` equal to `effective_level` in the control record. Neither record proves the correctness of classification or completion of required checks. Do not emit either artifact unless the user or application needs it. Do not guess assessment bands merely to satisfy required fields.
 
-## Reasoning levels
-
-### Level 0 — Direct execution
-
-Use when the task is deterministic or clerical, ambiguity is negligible, consequence is low, and no material evidentiary judgment is required.
-
-Examples: formatting, extraction, alphabetization, deterministic transformation.
-
-### Level 1 — Standard reasoning
-
-Use for routine analysis with few dependencies, low consequence, and mostly supplied evidence.
-
-### Level 2 — Governed analysis
-
-Use when there are multiple alternatives, incomplete or conflicting evidence, material assumptions, moderate consequence, or several dependent reasoning steps.
-
-### Level 3 — High-rigor reasoning
-
-Use when errors may have high consequence, actions are difficult to reverse, external parties may rely on the result, authority implications are material, or evidence requirements are strong.
-
-### Level 4 — Research and architecture
-
-Use for high-novelty research, theory creation, canonical architecture, patentable work, or tasks with a large unresolved hypothesis space.
-
-## Escalation floors
-
-Some task properties should act as **floors**, not merely weighted signals.
-
-Examples:
-
-- material legal, regulatory, financial, medical, safety, or security consequence;
-- difficult irreversibility;
-- authority or permission implications;
-- external publication or third-party reliance;
-- unresolved evidence conflict that can change the decision.
-
-A linguistically simple request may still require Level 3 if the consequence or authority implications warrant it.
-
-## Optional ReasoningPlan
-
-Applications may represent the semantic decision using [`schemas/reasoning-plan.schema.json`](../schemas/reasoning-plan.schema.json).
-
-Example:
+Illustrative plan for a bounded conflicting-evidence comparison:
 
 ```json
 {
@@ -97,7 +43,7 @@ Example:
     "ambiguity": "high",
     "evidence_dependency": "medium",
     "consequence": "medium",
-    "reversibility": "high",
+    "reversibility": "easy",
     "novelty": "low",
     "authority_sensitivity": "low"
   },
@@ -112,83 +58,26 @@ Example:
 }
 ```
 
-The plan is advisory. It does not establish authority, permission, execution, or observation.
+`reversibility` uses `easy`, `moderate` or `difficult`; the earlier inline example's `high` was invalid. `verification.required` describes an obligation, not a completed check. `escalation.allowed` describes a reasoning recommendation, not permission to invoke another tool or spend money.
 
-## Provider mapping
+Keep provider-specific mappings outside the core protocol. [Adapter guidance](../adapters/README.md) is informative: no executable provider adapter or measured budget mapping is supplied here. The host must establish supported settings, budgets and authorization. A PRP level is never a guaranteed token count. Select mappings from empirical quality/cost/latency comparisons, not from an assumed universal equivalence between effort labels.
 
-Provider-specific implementations should map semantic effort to current model controls only after measuring the provider/model on a relevant evaluation set.
+## Verification and escalation
 
-Do not assume:
+Prefer measurable failures over self-confidence alone: contradictory observations, failed schema or tests, missing decisive evidence, unsupported assumptions, or unresolved current authority. These signals can require more scrutiny, but the remedy is not always more model reasoning.
 
-```text
-PRP Level 0 = fixed token count
-PRP Level 1 = fixed token count
-...
-```
+Missing evidence calls for a source or a targeted question. Revocation calls for a valid current authorization path before action. An unavailable test remains blocked. If repeated analysis yields no new evidence or useful progress, stop or narrow the conclusion rather than looping indefinitely.
 
-Prefer:
-
-```text
-PRP level
-  → semantic effort requirement
-  → provider/model-specific mapping
-  → evaluation-informed budget/effort setting
-```
-
-See [`adapters/README.md`](../adapters/README.md).
-
-## Verification-triggered escalation
-
-A runtime may start with the lowest sufficient effort and escalate when a measurable failure occurs.
-
-Useful triggers include:
-
-- unresolved contradiction;
-- required evidence missing;
-- schema validation failure;
-- generated code failing tests;
-- tool output conflicting with expected state;
-- dependence on an unstated material assumption;
-- unresolved authority state;
-- verification failure.
-
-Prefer objective triggers over model self-confidence alone.
+A host that implements retries or escalation must separately set attempt, cost, time and tool-access limits. A budget cap cannot waive evidence or authority requirements. If the deployment cannot meet a required check, expose the limitation; do not silently declare a lower level adequate.
 
 ## Agent loops
 
-For agentic systems, PRP can inform the reasoning burden of each phase without becoming an agent runtime:
+Use task-sensitive rigor for planning, minimum sufficient scrutiny for bounded execution instructions, and additional verification/replanning when results are inconsistent, incomplete or consequential. Do not assume every planning task is Level 4 or every executor step is harmless. Actual tool execution remains downstream of authority and runtime checks.
 
-- **Plan:** use the minimum sufficient PRP level for decomposition and risk.
-- **Execute:** use the minimum sufficient reasoning for bounded tool calls.
-- **Verify:** increase rigor when results are inconsistent, incomplete, or consequential.
-- **Replan:** escalate only when the prior plan or evidence fails.
+## Evaluation and limits
 
-This keeps expensive reasoning concentrated where it changes outcomes.
+Compare low/fast, fixed-medium, fixed-high and PRP-routed configurations using the [routing cases](../evaluations/routing-cases.yaml) and [evaluation protocol](../evaluations/README.md). Separate prompt effects from routing effects. Include classification, retrieval, verification, retry and escalation overhead in the total cost and latency.
 
-## Evaluation
+Report substantive quality, critical failures, raw token metrics where exposed, wall-clock latency, cost, under-escalation and over-escalation. Do not count a longer answer or an impressive control header as substantive correction. All model-effectiveness comparisons remain unexecuted until actual named runs are retained.
 
-Reasoning allocation should be evaluated against at least:
-
-- a low/fast baseline;
-- a fixed medium-reasoning baseline;
-- a fixed high/max-reasoning baseline;
-- PRP-routed reasoning.
-
-Measure substantive correctness, critical PRP failures, reasoning or output tokens where available, wall-clock latency, cost, escalation rate, under-escalation, and over-escalation.
-
-See [`evaluations/routing-cases.yaml`](../evaluations/routing-cases.yaml) and [`evaluations/README.md`](../evaluations/README.md).
-
-## Boundary
-
-PRP remains an instruction-layer protocol.
-
-This reasoning-allocation contract does not:
-
-- choose a provider;
-- guarantee a token budget;
-- authenticate authority;
-- authorize an action;
-- execute tools;
-- establish that an effect occurred;
-- provide persistent memory;
-- create a sandbox.
+PRP does not choose a provider, guarantee a thinking budget, authenticate authority, authorize or execute tools, establish observed effects, provide memory or create a sandbox.

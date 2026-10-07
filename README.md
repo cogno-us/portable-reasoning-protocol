@@ -21,7 +21,7 @@
 
 PRP is a reusable SKILL.md-based instruction package for general-purpose AI work. It asks a model to calibrate rigor to consequence, distinguish evidence from inference, state material uncertainty and preserve the user's agency. These are behavioral instructions, not runtime enforcement.
 
-**Implementation status:** this README describes merged public reference work. Component acceptance, selection in the hub and execution of a qualification are separate facts. The selected revision for this component is `cb137f028e92448a56e785e3d4ea074b444fa225`; the [hub lock](https://github.com/cogno-us/cognous-open-control-stack/blob/5737267d94d2b445735c95e8480a31de73a2abe8/component-lock.json) is the source of that integration choice.
+**Implementation status:** the baseline scope below describes merged public reference work. New control-profile and allocation work is component-local and is not qualified by the older hub selection cited here. Component acceptance, selection in the hub and execution of a qualification are separate facts. The selected revision for this component is `cb137f028e92448a56e785e3d4ea074b444fa225`; the [hub lock](https://github.com/cogno-us/cognous-open-control-stack/blob/5737267d94d2b445735c95e8480a31de73a2abe8/component-lock.json) is the source of that integration choice.
 
 ## Purpose and intended users
 
@@ -56,6 +56,22 @@ Potential benefits include:
 
 These are architectural benefits and testable hypotheses, not claims of measured cost savings or model-independent performance. The repository's routing evaluation cases remain unexecuted until named model runs are recorded.
 
+## Compact operational control
+
+PRP retains its **public v1.0 lineage**, adapted from the mature v3.1 source. The new **control profile 1.0.0** makes minimum scrutiny, user overrides and required checks explicit without requiring a long prompt or a visible governance header on every answer. See the [source preservation map](references/source-lineage.md).
+
+The entrypoint now distinguishes the proposed level, mandatory minimum and effective level. Stable rule IDs and cumulative bundles make that choice inspectable. A Fast request cannot lower a consequential task below its floor; a request for brevity changes presentation, not required checks. Routine formatting remains a direct answer, and merely quoting legal or authority-related words does not trigger a full authority review.
+
+The intended benefits are fewer lost safeguards during compression, more consistent treatment of overrides, targeted clarification when evidence is missing, and less ceremonial output. These remain behavioral hypotheses until tested with named models. A formal header is not evidence of correctness, completed verification or permission.
+
+An optional [offline helper](tools/runtime_control.py) checks selection arithmetic over supplied rule matches. Its tests do **not** evaluate natural-language classification or model compliance. PRP itself still does not authenticate grants, enforce permissions or control provider compute.
+
+```sh
+python tools/runtime_control.py --proposed-level 2 --requested-depth fast --rule authority-sensitive
+```
+
+For full semantics, read [runtime control](references/runtime-control.md). For regression tasks, read [control cases](evaluations/control-cases.json). Model comparisons remain unexecuted; no inference cost was incurred for the offline checks.
+
 ## How it works
 
 A user supplies a decision question and asks PRP to distinguish facts, assumptions and remaining uncertainty. The assistant proposes options at a depth appropriate to the task. If a consequential action follows, the deployment must separately check authority and constrain execution; a reasoning conclusion or statement of confidence cannot replace those checks.
@@ -86,6 +102,11 @@ Use these sources for details; their historical checkpoints retain the status an
 - [INSTALLATION.md](INSTALLATION.md)
 - [STACK_INTEGRATION.md](STACK_INTEGRATION.md)
 - [references/reasoning-effort.md](references/reasoning-effort.md)
+- [references/runtime-control.md](references/runtime-control.md)
+- [references/source-lineage.md](references/source-lineage.md)
+- [schemas/runtime-control.schema.json](schemas/runtime-control.schema.json)
+- [policies/runtime-control.v1.json](policies/runtime-control.v1.json)
+- [evaluations/control-cases.json](evaluations/control-cases.json)
 - [schemas/reasoning-plan.schema.json](schemas/reasoning-plan.schema.json)
 - [examples/reasoning-plan.conflicting-evidence.json](examples/reasoning-plan.conflicting-evidence.json)
 - [adapters/README.md](adapters/README.md)

@@ -2,6 +2,28 @@
 
 Use this reference for high-rigor, research, architecture, publication, policy, patent, scientific, legal, financial, or other consequential work. The runtime `SKILL.md` contains the default control plane; this file adds the deeper mechanics.
 
+**Control profile:** the compact procedure, rule floors and override calculation in [SKILL.md](../SKILL.md) and [runtime control](runtime-control.md) govern the public operationalization. These checks do not authenticate authority or guarantee model compliance. This reference is supporting detail, not a static-only predecessor to a newer protocol. See [source lineage](source-lineage.md).
+
+## Contents
+
+- [1. Default operating state](#1-default-operating-state)
+- [2. Analysis-level detail](#2-analysis-level-detail)
+- [3. Automatic escalation](#3-automatic-escalation)
+- [4. World-model binding](#4-world-model-binding)
+- [5. Reachability discipline](#5-reachability-discipline)
+- [6. Contradiction handling](#6-contradiction-handling)
+- [7. Evidence discipline](#7-evidence-discipline)
+- [8. Assumption discipline](#8-assumption-discipline)
+- [9. Scope and authority control](#9-scope-and-authority-control)
+- [10. Negative records](#10-negative-records)
+- [11. Reusable governed state](#11-reusable-governed-state)
+- [12. Determinism discipline](#12-determinism-discipline)
+- [13. Failure modes to watch](#13-failure-modes-to-watch)
+- [14. Escalation and refusal](#14-escalation-and-refusal)
+- [15. Non-disableable safeguards](#15-non-disableable-safeguards)
+- [16. Full runtime checklist](#16-full-runtime-checklist)
+- [17. Final principle](#17-final-principle)
+
 ## 1. Default operating state
 
 Unless the user specifies otherwise:
@@ -39,7 +61,7 @@ Apply world-model binding, claim-mode classification, evidence hierarchy, altern
 
 Use for legal or regulatory analysis, financial decisions, scientific claims, patent material, safety-critical workflows, difficult-to-reverse decisions, external publication, consequential personnel matters, and claims likely to be relied upon by third parties.
 
-Apply explicit evidence requirements, contradiction analysis, source-quality assessment, alternative interpretations, uncertainty classification, authority validation, verification where tools or sources are available, and a concise decision record.
+Apply explicit evidence requirements, contradiction analysis, source-quality assessment, alternative interpretations, uncertainty classification, authority validation, mandatory verification where authorized tools or sources are available, and a concise decision record. A required but unavailable check must be marked blocked, not completed.
 
 ### Level 4 — Research and architecture
 
@@ -119,7 +141,7 @@ Do not imply authority you do not possess. Do not convert expertise into permiss
 
 ## 10. Negative records
 
-When a reasoning branch, claim, action, or interpretation is rejected and the rejection is material, preserve a compact record when useful: what was rejected; why; applicable world model; evidence or rule involved; scope of the rejection; and whether rejection is permanent, contextual, or revisable.
+When a reasoning branch, claim, action, or interpretation is rejected and the rejection is material, preserve a compact record when context permits: what was rejected; why; applicable world model; evidence or rule involved; scope of the rejection; and whether rejection is permanent, contextual, or revisable.
 
 Do not repeatedly revisit a rejected branch unless new evidence appears, the world model changes, the user reopens it, or the prior rejection was incomplete or wrong.
 

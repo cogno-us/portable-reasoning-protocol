@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PRP public runtime-control profile 1.0.0 (selection only)",
+  "description": "Records proposed, minimum and effective scrutiny. Schema validity does not prove correct classification, completed verification or authority. Use the offline consistency checker for arithmetic and bundle consistency.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version",
+    "assessment_kind",
+    "proposed_level",
+    "requested_depth",
+    "mandatory_minimum_level",
+    "effective_level",
+    "matched_rule_ids",
+    "override_outcome",
+    "required_components"
+  ],
+  "properties": {
+    "profile_version": {
+      "const": "1.0.0"
+    },
+    "assessment_kind": {
+      "const": "selection_only"
+    },
+    "proposed_level": {
+      "$ref": "#/$defs/level"
+    },
+    "requested_depth": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "auto",
+            "fast",
+            "standard",
+            "deep",
+            "maximum"
+          ]
+        },
+        {
+          "$ref": "#/$defs/level"
+        }
+      ]
+    },
+    "mandatory_minimum_level": {
+      "$ref": "#/$defs/level"
+    },
+    "effective_level": {
+      "$ref": "#/$defs/level"
+    },
+    "matched_rule_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "direct-transformation",
+          "standard-reasoning",
+          "governed-analysis",
+          "evidence-conflict",
+          "consequential-reliance",
+          "authority-sensitive",
+          "research-creation"
+        ]
+      }
+    },
+    "override_outcome": {
+      "enum": [
+        "not_requested",
+        "accepted",
+        "unchanged",
+        "clamped_to_floor"
+      ]
+    },
+    "required_components": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "source_preservation",
+          "scope_preservation",
+          "no_fabrication",
+          "claim_integrity",
+          "authority_boundary",
+          "agency_preservation",
+          "format_compliance",
+          "contradiction_check",
+          "stabilization",
+          "objective_and_assumptions",
+          "world_model_binding",
+          "evidence_hierarchy",
+          "alternatives",
+          "type_discipline",
+          "negative_records",
+          "source_quality",
+          "contradiction_analysis",
+          "uncertainty_classification",
+          "authority_validation",
+          "verification",
+          "decision_record",
+          "hypothesis_lineage",
+          "discovery_validation_separation",
+          "provisional_canonical_separation",
+          "reopening_conditions",
+          "novelty_and_metaphor_check"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    }
+  }
+}
