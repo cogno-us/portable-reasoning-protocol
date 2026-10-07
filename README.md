@@ -39,6 +39,23 @@ Engineers can inspect the reference contracts and examples; enterprise architect
 | **Agency preservation** | Present material tradeoffs and avoid manipulative pressure or unnecessary requests. |
 | **Optional handoff** | Preserve proposal/evidence distinctions for downstream systems without creating authority. |
 
+## Engineering benefits
+
+The reasoning-allocation additions are designed to make PRP easier to operationalize without binding it to a specific model vendor.
+
+Potential benefits include:
+
+- **Lower unnecessary reasoning spend:** routine work can remain at low effort while harder or higher-consequence work can escalate selectively.
+- **Better latency discipline:** applications can avoid applying extended reasoning uniformly to deterministic or low-value tasks.
+- **Provider portability:** PRP expresses a semantic reasoning requirement first; provider adapters translate that intent into current model-specific controls.
+- **Clearer separation of concerns:** reasoning effort remains distinct from evidence quality, institutional consequence, authorization, execution and observation.
+- **Measurable routing quality:** evaluation cases distinguish under-escalation from over-escalation and compare PRP routing against fixed-effort baselines.
+- **Safer escalation logic:** verification failure, unresolved contradiction, missing evidence or unresolved authority can trigger deeper analysis without treating confidence as permission.
+- **More efficient agent loops:** reasoning can be concentrated in planning, verification and replanning instead of every bounded execution step.
+- **Stable integration surface:** a versioned `ReasoningPlan` allows runtimes to evolve model mappings without rewriting the core PRP protocol.
+
+These are architectural benefits and testable hypotheses, not claims of measured cost savings or model-independent performance. The repository's routing evaluation cases remain unexecuted until named model runs are recorded.
+
 ## How it works
 
 A user supplies a decision question and asks PRP to distinguish facts, assumptions and remaining uncertainty. The assistant proposes options at a depth appropriate to the task. If a consequential action follows, the deployment must separately check authority and constrain execution; a reasoning conclusion or statement of confidence cannot replace those checks.
@@ -47,7 +64,7 @@ A valid signature, chain inclusion, message receipt, reasoning instruction or ev
 
 ## Getting started
 
-Read [SKILL.md](SKILL.md), then follow [INSTALLATION.md](INSTALLATION.md) for the platform's supported instruction mechanism. Start with one ordinary analysis task; request explicit assumptions and evidence status rather than a fixed answer length. Treat platform-specific activation instructions as configuration guidance, not evidence that a model follows every rule. Use [the evaluation protocol](evaluations/README.md) to measure behavior under a named model/version and configuration.
+Read [SKILL.md](SKILL.md), then follow [INSTALLATION.md](INSTALLATION.md) for the platform's supported instruction mechanism. Start with one ordinary analysis task; request explicit assumptions and evidence status rather than a fixed answer length. Treat platform-specific activation instructions as configuration guidance, not evidence that a model follows every rule. Use [the evaluation protocol](evaluations/README.md) to measure behavior under a named model/version and configuration. For optional runtime allocation, read [Reasoning Effort and Allocation](references/reasoning-effort.md) and the provider-neutral [ReasoningPlan schema](schemas/reasoning-plan.schema.json).
 
 ## Evidence and supported scope
 
@@ -68,8 +85,13 @@ Use these sources for details; their historical checkpoints retain the status an
 - [SKILL.md](SKILL.md)
 - [INSTALLATION.md](INSTALLATION.md)
 - [STACK_INTEGRATION.md](STACK_INTEGRATION.md)
+- [references/reasoning-effort.md](references/reasoning-effort.md)
+- [schemas/reasoning-plan.schema.json](schemas/reasoning-plan.schema.json)
+- [examples/reasoning-plan.conflicting-evidence.json](examples/reasoning-plan.conflicting-evidence.json)
+- [adapters/README.md](adapters/README.md)
 - [evaluations/README.md](evaluations/README.md)
 - [evaluations/cases.yaml](evaluations/cases.yaml)
+- [evaluations/routing-cases.yaml](evaluations/routing-cases.yaml)
 
 For a nontechnical introduction, read the [business overview](collateral/business-collateral.md) and [one-page overview](collateral/one-page-overview.md). Both describe this component's role and evidence limits, not additional runtime features.
 
