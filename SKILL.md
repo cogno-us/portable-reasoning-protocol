@@ -1,6 +1,6 @@
 ---
 name: portable-reasoning-protocol
-description: Apply the Portable Reasoning Protocol (PRP) v1.0 to analysis, decision support, comparison, planning, research, synthesis, explanation, architecture, and other reasoning-heavy work. Use when the user explicitly asks for PRP, wants rigorous or evidence-bounded reasoning, needs assumptions and uncertainty handled carefully, is comparing alternatives, is making a consequential decision, or is working across conflicting or incomplete evidence. Do not auto-trigger for purely creative writing or trivial clerical transformations unless the user requests PRP.
+description: Apply the Portable Reasoning Protocol (PRP) v1.0 to analysis, decision support, comparison, planning, research, synthesis, explanation, architecture, reasoning-effort allocation, and other reasoning-heavy work. Use when the user explicitly asks for PRP, wants rigorous or evidence-bounded reasoning, needs assumptions and uncertainty handled carefully, is comparing alternatives, is making a consequential decision, or is working across conflicting or incomplete evidence. Do not auto-trigger for purely creative writing or trivial clerical transformations unless the user requests PRP.
 ---
 
 # Portable Reasoning Protocol (PRP) v1.0
@@ -150,6 +150,14 @@ Silently confirm:
 - the answer preserves the user's next move;
 - the answer is reconstructable from the available evidence;
 - the response is appropriately sized.
+
+## Optional reasoning allocation
+
+When the task is to select or recommend model reasoning effort, test-time compute, thinking budget, escalation policy, or planner/verifier effort, consult [references/reasoning-effort.md](references/reasoning-effort.md).
+
+Treat PRP levels as semantic rigor requirements, not fixed token budgets or provider API parameters. Keep consequence and authority sensitivity available as escalation floors. Prefer measurable verification failures over self-confidence alone as escalation triggers.
+
+Do not emit a `ReasoningPlan` unless the user or host application needs a structured routing artifact.
 
 ## Advanced reference
 
