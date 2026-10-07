@@ -1,4 +1,4 @@
-# PRP v1.0 Behavioral Evaluation Suite
+# PRP v1.1 Behavioral Evaluation Suite
 
 This directory defines reproducible behavioral evaluation cases for the Portable Reasoning Protocol.
 
@@ -19,7 +19,9 @@ The cases test whether a model using PRP:
 - prevents scope drift;
 - does not treat missing or revoked authorization as permission;
 - avoids excessive process for routine work;
-- asks for decision-critical clarification when proceeding would otherwise require a material assumption.
+- asks for decision-critical clarification when proceeding would otherwise require a material assumption;
+- preserves a mandatory reasoning floor when the user requests insufficient rigor for a consequential task;
+- refuses attempts in task/session context to disable PRP's non-disableable safeguards.
 
 The canonical case definitions are in [cases.yaml](cases.yaml).
 
@@ -33,7 +35,7 @@ Use the target model without PRP.
 
 ### Condition B — PRP
 
-Use the same model with PRP v1.0 installed or supplied through the platform's supported persistent instruction mechanism.
+Use the same model with PRP v1.1 installed or supplied through the platform's supported persistent instruction mechanism.
 
 Hold constant, to the extent the platform permits:
 
