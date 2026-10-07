@@ -126,7 +126,7 @@ An application may choose to export a non-authoritative reasoning summary contai
 
 Such a summary is informational. The receiving system must apply its own schema validation, evidence acceptance, authority checks, policy evaluation, and execution controls.
 
-PRP v1.0 does not define a canonical cross-repository wire format for this handoff.
+PRP v1.0 does not define a canonical cross-repository decision or authorization wire format for this handoff. It now defines an optional provider-neutral [ReasoningPlan](schemas/reasoning-plan.schema.json) for communicating reasoning-effort intent only. That plan is advisory and must not be interpreted as evidence acceptance, institutional authority, authorization, execution, or observation.
 
 ## 5. ODES compatibility
 
@@ -149,3 +149,5 @@ Do not use PRP as a substitute for:
 - independent verification.
 
 The correct integration pattern is optional composition, not dependency.
+
+For runtime reasoning allocation, see [Reasoning Effort and Allocation](references/reasoning-effort.md). Provider-specific mappings remain informative adapters and are not part of PRP's authority or enforcement boundary.
