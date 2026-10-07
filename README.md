@@ -13,307 +13,91 @@
 ```
 <!-- cognous-banner:end -->
 
-# Portable Reasoning Protocol (PRP) v1.0
+# Portable Reasoning Protocol v1.0
 
-**A portable reasoning layer for more rigorous, evidence-bounded AI work.**
+**Portable instructions for evidence-bounded reasoning.**
 
-Developed by **[Cognous](https://cogno.us)**.
+## Overview
 
-PRP is a reusable reasoning protocol for general-purpose AI systems. It is designed to improve the quality of analysis without forcing every task into heavyweight governance. The protocol adapts its rigor to the task: simple work stays simple; consequential, ambiguous, evidentiary, novel, or difficult-to-reverse work receives deeper scrutiny.
+PRP is a reusable SKILL.md-based instruction package for general-purpose AI work. It asks a model to calibrate rigor to consequence, distinguish evidence from inference, state material uncertainty and preserve the user's agency. These are behavioral instructions, not runtime enforcement.
 
-This repository packages PRP v1.0 as a `SKILL.md`-based Skill so the protocol can be inspected, versioned, forked, tested, and reused.
+**Implementation status:** this README describes merged public reference work. Component acceptance, selection in the hub and execution of a qualification are separate facts. The selected revision for this component is `cb137f028e92448a56e785e3d4ea074b444fa225`; the [hub lock](https://github.com/cogno-us/cognous-open-control-stack/blob/5737267d94d2b445735c95e8480a31de73a2abe8/component-lock.json) is the source of that integration choice.
 
-## What PRP is
+## Purpose and intended users
 
-PRP is a control layer for reasoning. It does not try to give an AI system a new personality or domain identity. Instead, it constrains how the system moves from evidence to claims, assumptions to conclusions, possibility to actuality, and confidence to action.
+Fluent output can hide unsupported certainty, invented sources, unstated assumptions or a premature conclusion. Teams need a shared way to ask for evidence discipline without requiring every routine task to become a long report.
 
-Its central idea is straightforward:
+Engineers can inspect the reference contracts and examples; enterprise architecture, security and governance reviewers can examine the boundary and evidence. Evaluate this component for its named responsibility rather than as a complete governance platform.
 
-> Do not eliminate ideas. Eliminate invalid transitions between ideas, evidence, claims, and actions.
+## Key features
 
-PRP applies more rigor when the cost of error rises and less when the task is routine. Reasoning depth and answer length are treated as separate controls, so a short answer can still be produced from high-rigor analysis.
+| Capability | Implemented or specified responsibility |
+|---|---|
+| **Adaptive rigor** | Escalate scrutiny when consequence, uncertainty, novelty or irreversibility increases. |
+| **Claim discipline** | Separate observed, inferred, estimated, hypothetical, normative and unknown statements. |
+| **Hallucination controls** | Instruct the model not to fabricate facts, citations, capabilities, tool results or completed actions. |
+| **Agency preservation** | Present material tradeoffs and avoid manipulative pressure or unnecessary requests. |
+| **Optional handoff** | Preserve proposal/evidence distinctions for downstream systems without creating authority. |
 
-## Who it is for
+## How it works
 
-PRP is intended for people who use general-purpose AI for work where reasoning quality matters, including:
+A user supplies a decision question and asks PRP to distinguish facts, assumptions and remaining uncertainty. The assistant proposes options at a depth appropriate to the task. If a consequential action follows, the deployment must separately check authority and constrain execution; a reasoning conclusion or statement of confidence cannot replace those checks.
 
-- founders and executives;
-- analysts and consultants;
-- researchers and scientists;
-- product and engineering teams;
-- legal, policy, risk, and governance professionals;
-- enterprise AI teams;
-- educators and students doing analytical work;
-- anyone using AI for consequential decisions, synthesis, research, planning, or evaluation.
+A valid signature, chain inclusion, message receipt, reasoning instruction or evidence-package digest does not authorize execution. Institutional authority must be supplied and evaluated through the appropriate trusted boundary.
 
-It is also useful for teams that want a shared reasoning standard without forcing a single output style or domain-specific workflow.
+## Getting started
 
-## What problems it addresses
+Read [SKILL.md](SKILL.md), then follow [INSTALLATION.md](INSTALLATION.md) for the platform's supported instruction mechanism. Start with one ordinary analysis task; request explicit assumptions and evidence status rather than a fixed answer length. Treat platform-specific activation instructions as configuration guidance, not evidence that a model follows every rule. Use [the evaluation protocol](evaluations/README.md) to measure behavior under a named model/version and configuration.
 
-General-purpose language models can produce fluent answers even when the underlying reasoning is weak. Common failure modes include:
+## Evidence and supported scope
 
-- unsupported certainty;
-- fabricated facts, citations, or actions;
-- hidden assumptions;
-- conflating inference with observation;
-- treating possibility as probability or probability as actuality;
-- confusing correlation with causation;
-- scope drift;
-- silently changing premises;
-- collapsing legitimate alternatives too early;
-- applying too much process to trivial work;
-- applying too little scrutiny to consequential work;
-- mistaking coherence for correctness.
+The hub selects a pinned PRP v1.0 instruction artifact as an optional layer. Its recorded checks are static artifact/JSON checks only. The [evaluation suite](evaluations/README.md) defines baseline-versus-PRP comparisons; it supplies no general claim of measured uplift, safety or model-independent efficacy.
 
-PRP turns these failure modes into explicit reasoning constraints.
+The accepted [hub persistence-generation evidence](https://github.com/cogno-us/cognous-open-control-stack/blob/5737267d94d2b445735c95e8480a31de73a2abe8/examples/control-plane-store-adoption/qualification-summary.json) records 915 Python tests in each of two repetitions, 35 matrix entries satisfying their gates and 120 separate mocked OpenShell tests. Those are aggregate hub results, not a per-component test count or a claim of production readiness. Optional behavioral layers receive static checks only. The [support ledger](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/release-status.md) separates implementation, execution and adoption.
 
-## Core benefits
+## Limitations and deployment decisions
 
-### Adaptive rigor
+PRP does not add persistent state, authenticate institutions, intercept tools, create a sandbox or guarantee truthfulness. The hub performs static artifact checks only. Model-behavior efficacy must be measured for named models/configurations and is not established by installation or schema validity.
 
-PRP selects the minimum sufficient reasoning depth for the task. Routine transformations can remain lightweight, while scientific, legal, financial, safety-critical, patent, publication, or high-novelty work can escalate automatically.
+Review original artifacts and their exact source revisions before extending a claim to a new environment. New dependencies, authority sources, destinations or enforcement mechanisms need their own compatibility and qualification. A passing reference case is not a certification of an enterprise deployment.
 
-### Better epistemic discipline
+## Repository guide
 
-Material claims are treated according to their evidentiary status: observed, verified, inferred, estimated, hypothetical, speculative, metaphorical, fictional, normative, or unknown.
+Use these sources for details; their historical checkpoints retain the status and scope of the work they recorded:
 
-### Stronger hallucination control
+- [SKILL.md](SKILL.md)
+- [INSTALLATION.md](INSTALLATION.md)
+- [STACK_INTEGRATION.md](STACK_INTEGRATION.md)
+- [evaluations/README.md](evaluations/README.md)
+- [evaluations/cases.yaml](evaluations/cases.yaml)
 
-The protocol explicitly prohibits invention of facts, citations, sources, laws, policies, capabilities, tool results, actions, files, messages, people, or verification.
+For a nontechnical introduction, read the [business overview](collateral/business-collateral.md) and [one-page overview](collateral/one-page-overview.md). Both describe this component's role and evidence limits, not additional runtime features.
 
-### Clearer assumptions and uncertainty
+## Contributing and attribution
 
-PRP distinguishes what is known from what is assumed, inferred, estimated, or unresolved. When evidence weakens, confidence should fall rather than rhetoric increasing.
+Propose focused changes through repository issues and pull requests. Keep evidence-linked claims, preserve historical records and separate proposed features from accepted implementation.
 
-### User agency preservation
-
-The system is instructed to preserve the user's decision space, present tradeoffs honestly, avoid manipulative pressure, and refrain from substituting model judgment for human authority.
-
-### Scope and authority discipline
-
-PRP prevents local preferences, organizational rules, temporary assumptions, or domain-specific constraints from silently becoming universal truths. It also distinguishes expertise, capability, permission, and authorization.
-
-### Proportionality
-
-The protocol is designed to avoid both under-analysis and over-governance. A clerical task should not receive a research memo; a consequential decision should not receive an unexamined guess.
-
-## How adaptive reasoning works
-
-PRP uses five reasoning levels.
-
-| Level | Mode | Typical use |
-|---|---|---|
-| 0 | Direct Execution | Formatting, extraction, rewriting, deterministic clerical work |
-| 1 | Standard Reasoning | Routine analysis, summaries, low-risk planning |
-| 2 | Governed Analysis | Strategy, comparison, architecture, multi-source synthesis, ambiguous decisions |
-| 3 | High-Rigor Reasoning | Legal, financial, scientific, patent, regulatory, safety-critical, publication work |
-| 4 | Research & Architecture | Theory creation, formal research, high-novelty system design, canonical intellectual work |
-
-The protocol escalates based on consequence, ambiguity, evidence dependency, irreversibility, novelty, external exposure, authority implications, and potential harm from error.
-
-## The four core invariants
-
-PRP is anchored by four rules:
-
-1. **Say what is true.** Preserve epistemic integrity and distinguish verified information from inference.
-2. **Extract nothing.** Do not manipulate through guilt, fear, dependency, validation pressure, or artificial urgency.
-3. **Protect the other party's next move.** Preserve agency, alternatives, and reversibility.
-4. **Do not trade truth for fluency, confidence, or completeness.** Prefer partial accuracy to polished fabrication.
-
-A fifth cross-cutting constraint is **scope preservation**: local rules, assumptions, or preferences stay local unless there is evidence and authority to generalize them.
-
-## Claim modes and type discipline
-
-PRP requires material propositions to retain their correct status. An estimate should not become a measurement. A metaphor should not become a literal mechanism. A hypothesis should not become a fact because it is compelling.
-
-The protocol also guards against silent category conversion, including:
-
-- possibility → probability;
-- probability → actuality;
-- correlation → causation;
-- analogy → identity;
-- evidence → interpretation;
-- prediction → observation;
-- simulation → execution;
-- confidence → correctness;
-- coherence → truth;
-- capability → permission.
-
-## What PRP does not do
-
-PRP does **not**:
-
-- alter model weights;
-- make a probabilistic model deterministic;
-- guarantee factual correctness;
-- replace primary-source verification;
-- create legal, medical, financial, scientific, or institutional authority;
-- expose or require private chain-of-thought;
-- turn every interaction into a compliance workflow;
-- substitute a model's decision for the user's.
-
-It is an instruction- and Skill-level reasoning discipline. Its purpose is to reduce invalid reasoning paths and make errors easier to detect, not to claim perfect control.
-
-## Repository structure
-
-```text
-portable-reasoning-protocol/
-├── SKILL.md
-├── README.md
-├── INSTALLATION.md
-├── STACK_INTEGRATION.md
-├── CHANGELOG.md
-├── agents/
-│   └── openai.yaml
-├── evaluations/
-│   ├── README.md
-│   └── cases.yaml
-└── references/
-    └── prp-core.md
-```
-
-`SKILL.md` is intentionally compact. It acts as the runtime control plane. The advanced public protocol lives in `references/prp-core.md` and can be loaded when a task requires deeper rigor.
-
-## Installation
-
-See **[INSTALLATION.md](INSTALLATION.md)** for platform-specific instructions for:
-
-- ChatGPT
-- Claude
-- Gemini
-- GitHub Copilot
-
-The guide distinguishes native Agent Skill installation from compatibility approaches on platforms that use a different customization mechanism.
-
-## Using PRP
-
-Typical requests include:
-
-- `Apply PRP to this decision.`
-- `Analyze this using maximum rigor but keep the answer concise.`
-- `Use PRP to compare these two architectures.`
-- `Separate verified facts, inference, and speculation.`
-- `Stress-test this recommendation for hidden assumptions and contradictions.`
-- `Treat this as publication-grade analysis.`
-- `Give me the decision first, then the evidence and material caveats.`
-
-Where the host supports skill triggering, PRP can also be selected automatically when its description matches the task.
-
-## User controls
-
-PRP separates analysis from presentation. Users can request different combinations such as:
-
-- **Fast + concise** for routine work;
-- **Deep + concise** for executive decisions;
-- **Maximum + exhaustive** for research or publication;
-- **Deep + essential caveats** when time is limited;
-- **Standard + explicit assumptions** when transparency matters more than length.
-
-Visible brevity never disables truthfulness, hallucination control, material uncertainty, source integrity, scope integrity, or authority discipline.
-
-## Example: ordinary decision
-
-**Request**
-
-> Compare these two vendors using PRP. Keep it to one page.
-
-**Expected behavior**
-
-PRP should identify the decision objective, distinguish sourced facts from inference, expose material assumptions, compare alternatives against the user's actual criteria, flag missing evidence that could change the decision, and remain concise.
-
-## Example: high-rigor research
-
-**Request**
-
-> Use maximum rigor. Determine whether this evidence supports a causal claim and identify the strongest alternative explanations.
-
-**Expected behavior**
-
-PRP should escalate the task, classify evidence quality, separate observation from interpretation, test causality rather than correlation, preserve competing hypotheses, identify discriminating evidence, and avoid manufacturing certainty.
-
-## Example: creative or hypothetical work
-
-PRP is not designed to suppress imagination. Fictional, hypothetical, metaphorical, visual, and speculative propositions remain admissible when correctly typed within the relevant world model.
-
-A surreal proposition can be valid in fiction while unsupported as a claim about ordinary physical reality. PRP constrains invalid transitions between those contexts; it does not erase the underlying concept.
-
-## Design philosophy
-
-PRP treats reasoning as movement through a constrained possibility space. A reasoning step should remain relevant, evidentially bounded, scope-correct, reconstructable, and consistent with active definitions.
-
-When multiple branches remain admissible, preserve the important alternatives. When a branch becomes unsupported, contradictory, irrelevant, or unauthorized, stop promoting it. When new evidence changes the answer, revise the conclusion rather than rewriting the historical record.
-
-This approach is intended to make model outputs more inspectable and decision-useful without requiring identical wording or rigid procedural ceremony.
-
-## Relationship to enterprise systems
-
-The public PRP Skill operates at the instruction and workflow layer. That makes it useful for individual and team reasoning, experimentation, education, and benchmarking.
-
-Production enterprise systems may require additional mechanisms such as persistent state, policy enforcement, observability, provenance, access control, auditability, runtime interception, and deterministic execution controls. Those capabilities are outside the scope of this Skill.
-
-## Optional Cognous stack integration
-
-PRP remains independently usable and has no mandatory dependency on the Cognous Open Source Stack.
-
-See **[STACK_INTEGRATION.md](STACK_INTEGRATION.md)** for the optional handoff model. It explains how PRP can preserve claim status, uncertainty, competing explanations, source/tool attribution, and action-state distinctions before a downstream authority or runtime system makes its own decision.
-
-The integration note explicitly keeps separate:
-
-- reasoning effort;
-- evidence quality;
-- institutional consequence;
-- authorization state;
-- execution status;
-- observation status.
-
-Reasoning rigor does not grant permission, and PRP does not authenticate authority or prove that an external effect occurred.
-
-## Versioning
-
-This public package is **PRP v1.0**.
-
-The v1.0 designation marks the first public Skill release. Future changes should distinguish:
-
-- editorial changes;
-- implementation changes;
-- behavioral changes;
-- changes to core invariants.
-
-Behavioral and invariant changes should receive explicit version increments and testing.
-
-## Contributing and testing
-
-Useful contributions include:
-
-- benchmark tasks;
-- adversarial examples;
-- ambiguity tests;
-- hallucination tests;
-- evidence-conflict tests;
-- authority and scope tests;
-- comparisons across model families;
-- tests of over-governance versus under-governance;
-- examples where PRP changes a conclusion rather than merely changing presentation.
-
-A strong benchmark should test whether the protocol changes reasoning quality, not whether it merely produces more structured prose.
-
-The repository now includes a reproducible **[behavioral evaluation suite](evaluations/README.md)** with canonical cases in **[evaluations/cases.yaml](evaluations/cases.yaml)**. The suite separates substantive decision correction from formatting compliance and requires baseline-versus-PRP runs to record model/version, settings, inputs, outputs, and evaluator provenance.
-
-Behavioral cases are marked **unexecuted** unless an actual model run is recorded. Static/package validation does not establish behavioral effectiveness.
-
-## Important limitation
-
-PRP is an instruction-layer protocol. Model behavior can still vary with model version, tool availability, retrieval results, context, system instructions, decoding behavior, and host-platform constraints.
-
-Use PRP to improve reasoning discipline, not as evidence that an answer is correct merely because PRP was applied.
+See [LICENSE](LICENSE) and [attribution](NOTICE) for the existing terms and third-party scope. Developed by [Cognous](https://cogno.us); no licensing change is part of this documentation update.
 
 ---
 
-**Portable Reasoning Protocol (PRP) v1.0**  
-Developed by **[Cognous](https://cogno.us)**  
-Governed reasoning infrastructure for AI systems.
+## Cognous stack components
 
-## License
+[Stack hub](https://github.com/cogno-us/cognous-open-control-stack) · [Selected pins](https://github.com/cogno-us/cognous-open-control-stack/blob/main/component-lock.json) · [Evidence and limits](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/release-status.md)
 
-Cognous-owned original material is licensed under [Apache 2.0](LICENSE).
-See [NOTICE](NOTICE) for attribution and third-party scope. Prior license grants remain valid.
+Component links are navigation, not a requirement to install every component. The hub lock determines its supported integration.
+
+| Component | Responsibility |
+|---|---|
+| [Agent Action Manifest](https://github.com/cogno-us/cognous-agent-action-manifest) | Declare the action before evaluating permission |
+| [Agent Control Plane](https://github.com/cogno-us/cognous-agent-control-plane) | Evaluate proposals against authority and preserve the decision record |
+| [Agent Replay Bundle](https://github.com/cogno-us/cognous-agent-replay-bundle) | Reconstruct what the retained records support |
+| [Agent Governance Evidence Pack](https://github.com/cogno-us/cognous-agent-governance-evidence-pack) | Turn traceable runtime records into reviewable governance evidence |
+| [Open Decision Evidence Standard](https://github.com/cogno-us/open-decision-evidence-standard) | Portable decision evidence across system and organizational boundaries |
+| [Alvorada Experimental Workbench](https://github.com/cogno-us/alvorada) | Governed exchange and continuity for a bounded synthetic workflow |
+| [Moltbot Safe](https://github.com/cogno-us/moltbot-safe) | Constrained execution beneath independent current authorization |
+| [BitRep](https://github.com/cogno-us/bitrep) | Verify issuer signatures under explicit trust assumptions |
+| [The Index](https://github.com/cogno-us/the-index) | A local blockchain reference for claims, evidence commitments and lifecycle history |
+| [Research Intelligence Protocol v1.0](https://github.com/cogno-us/research-intelligence-protocol) | Disciplined discovery and cross-domain abstraction, kept separate |
+| [TFA Protocol (S43)](https://github.com/cogno-us/truth-freedom-agency-protocol) | Truth · Freedom · Agency |
+| [Constitutional Governance for Institutions](https://github.com/cogno-us/constitutional-governance-for-institutions) | Alvorada: authority, challenge and correction for institutions |
