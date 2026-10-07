@@ -61,7 +61,7 @@ Read [SKILL.md](SKILL.md), then follow [INSTALLATION.md](INSTALLATION.md) for th
 
 ## Evidence and supported scope
 
-The hub selects a pinned PRP v1.1 instruction artifact as an optional layer. Its recorded checks are static artifact/JSON checks only. The [evaluation suite](evaluations/README.md) defines baseline-versus-PRP comparisons; it supplies no general claim of measured uplift, safety or model-independent efficacy.
+The repository defines PRP v1.1. The hub currently selects an earlier pinned PRP revision as an optional layer; `component-lock.json` remains authoritative for the integrated version. Its recorded checks are static artifact/JSON checks only. The [evaluation suite](evaluations/README.md) defines baseline-versus-PRP comparisons; it supplies no general claim of measured uplift, safety or model-independent efficacy.
 
 The accepted [hub persistence-generation evidence](https://github.com/cogno-us/cognous-open-control-stack/blob/5737267d94d2b445735c95e8480a31de73a2abe8/examples/control-plane-store-adoption/qualification-summary.json) records 915 Python tests in each of two repetitions, 35 matrix entries satisfying their gates and 120 separate mocked OpenShell tests. Those are aggregate hub results, not a per-component test count or a claim of production readiness. Optional behavioral layers receive static checks only. The [support ledger](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/release-status.md) separates implementation, execution and adoption.
 
