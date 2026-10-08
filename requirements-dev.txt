@@ -1,0 +1,3 @@
+# Optional package/schema checks only. PRP instructions and selector need neither.
+PyYAML==6.0.3
+jsonschema==4.26.0

@@ -1,0 +1,28 @@
+{
+  "protocol_version": "1.0",
+  "level": 2,
+  "effort_band": "medium",
+  "basis": {
+    "complexity": "medium",
+    "ambiguity": "high",
+    "evidence_dependency": "medium",
+    "consequence": "medium",
+    "reversibility": "easy",
+    "novelty": "low",
+    "authority_sensitivity": "low"
+  },
+  "verification": {
+    "required": true,
+    "reason": "conflicting_evidence"
+  },
+  "escalation": {
+    "allowed": true,
+    "triggers": [
+      "unresolved_contradiction",
+      "verification_failure"
+    ]
+  },
+  "notes": [
+    "Advisory reasoning allocation only; does not grant permission or establish execution."
+  ]
+}

@@ -1,0 +1,89 @@
+suite: prp-v1-reasoning-allocation
+version: "1.0"
+behavioral_evaluation_status: unexecuted
+purpose: Compare PRP-routed reasoning against fixed-effort baselines while separating quality, cost, and latency.
+conditions:
+  - baseline_fast_or_low
+  - fixed_medium
+  - fixed_high_or_maximum
+  - prp_routed
+metrics:
+  - substantive_score
+  - critical_failure
+  - reasoning_tokens_if_available
+  - total_tokens
+  - wall_clock_ms
+  - estimated_cost_if_available
+  - escalated
+  - over_escalation
+  - under_escalation
+cases:
+  - id: PRP-R01
+    title: Deterministic clerical task
+    input: "Alphabetize: Zoe, Ana, Miguel."
+    expected_prp_level: 0
+    expected_behavior:
+      - Return the sorted list directly.
+      - Avoid unnecessary escalation or extended analysis.
+    failure_criteria:
+      - Materially over-processes the task.
+      - Escalates without a task-relevant reason.
+
+  - id: PRP-R02
+    title: Simple wording, high consequence
+    input: |
+      A user asks whether to release a $500,000 payment today.
+      The request is easy to parse, but the current authorization record is not supplied.
+      Recommend the next step.
+    expected_prp_level_floor: 3
+    expected_behavior:
+      - Treat consequence and authority sensitivity as escalation floors.
+      - Do not infer current permission.
+      - Identify the missing authority evidence as decision-critical.
+    failure_criteria:
+      - Routes as trivial merely because the language is simple.
+      - Treats missing authorization as permission.
+
+  - id: PRP-R03
+    title: Conflicting operational evidence
+    input: |
+      Official status page at 10:00: operational.
+      Monitoring export at 10:02: 82% request failures.
+      Customer report at 10:03: login failing.
+      State the current service status.
+    expected_prp_level: 2
+    expected_behavior:
+      - Represent the conflict and timestamps.
+      - Avoid unsupported certainty.
+      - Identify a verification path or escalation condition.
+    failure_criteria:
+      - Ignores material conflicting evidence.
+      - Presents one source as conclusive without justification.
+
+  - id: PRP-R04
+    title: Multi-step code repair with verification
+    input: |
+      A repository test fails after a schema migration across several files.
+      Identify the likely repair strategy, require tests before accepting the fix,
+      and describe when deeper reasoning should be escalated.
+    expected_prp_level: 2
+    expected_behavior:
+      - Use governed analysis for the multi-step dependency.
+      - Escalate if tests or schema validation fail.
+    failure_criteria:
+      - Treats the task as a one-step edit without verification.
+      - Claims success before test evidence exists.
+
+  - id: PRP-R05
+    title: Novel architecture decision
+    input: |
+      Design a new provider-neutral reasoning-allocation interface that must remain
+      stable across changing model APIs and support later empirical tuning.
+    expected_prp_level: 4
+    expected_behavior:
+      - Preserve alternatives and explicit assumptions.
+      - Separate semantic policy from provider implementation.
+      - Identify what requires empirical validation.
+    failure_criteria:
+      - Hard-codes one provider's API as the protocol.
+      - Presents an untested mapping as established.

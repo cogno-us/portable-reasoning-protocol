@@ -1,0 +1,93 @@
+{
+  "profile_version": "1.0.0",
+  "protocol_version": "1.0",
+  "scope": "Selection arithmetic over supplied rule matches only; not a classifier, verifier, authorization gate or model-compliance guarantee.",
+  "depth_mapping": {
+    "fast": 0,
+    "standard": 1,
+    "deep": 3,
+    "maximum": 4
+  },
+  "rules": [
+    {
+      "id": "direct-transformation",
+      "minimum_level": 0,
+      "applies_when": "Source-preserving clerical or creative transformation with no material evidentiary judgment or consequential action.",
+      "source_sections": "3: Level 0"
+    },
+    {
+      "id": "standard-reasoning",
+      "minimum_level": 1,
+      "applies_when": "Routine explanation, summary or low-risk planning requiring ordinary judgment.",
+      "source_sections": "3: Level 1"
+    },
+    {
+      "id": "governed-analysis",
+      "minimum_level": 2,
+      "applies_when": "Comparison, strategy, multi-document synthesis, material ambiguity or competing interpretations.",
+      "source_sections": "3: Level 2"
+    },
+    {
+      "id": "evidence-conflict",
+      "minimum_level": 2,
+      "applies_when": "Material conflicting or missing evidence that can change the conclusion. Combine with higher-consequence rules when applicable.",
+      "source_sections": "4; 12; 14; 15"
+    },
+    {
+      "id": "consequential-reliance",
+      "minimum_level": 3,
+      "applies_when": "Substantive legal, regulatory, financial, medical, scientific, patent, safety or personnel judgment; irreversible/material decisions; factual public or third-party reliance.",
+      "source_sections": "3: Level 3; 4"
+    },
+    {
+      "id": "authority-sensitive",
+      "minimum_level": 3,
+      "applies_when": "Determining or relying on current permission, delegation, approvals or the right to cause an external effect. Mere occurrence of an authority-related word does not match.",
+      "source_sections": "4; 16"
+    },
+    {
+      "id": "research-creation",
+      "minimum_level": 4,
+      "applies_when": "New theory, formal discovery, governed system design, patentable architecture or canonical high-novelty intellectual work.",
+      "source_sections": "3: Level 4"
+    }
+  ],
+  "level_additions": {
+    "0": [
+      "source_preservation",
+      "scope_preservation",
+      "no_fabrication",
+      "claim_integrity",
+      "authority_boundary",
+      "agency_preservation",
+      "format_compliance",
+      "contradiction_check",
+      "stabilization"
+    ],
+    "1": [
+      "objective_and_assumptions"
+    ],
+    "2": [
+      "world_model_binding",
+      "evidence_hierarchy",
+      "alternatives",
+      "type_discipline",
+      "negative_records"
+    ],
+    "3": [
+      "source_quality",
+      "contradiction_analysis",
+      "uncertainty_classification",
+      "authority_validation",
+      "verification",
+      "decision_record"
+    ],
+    "4": [
+      "hypothesis_lineage",
+      "discovery_validation_separation",
+      "provisional_canonical_separation",
+      "reopening_conditions",
+      "novelty_and_metaphor_check"
+    ]
+  }
+}

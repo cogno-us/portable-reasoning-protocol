@@ -171,3 +171,53 @@ Do not infer effectiveness from:
 Do not incur paid model-evaluation costs merely to populate this repository.
 
 Behavioral runs may be added later when an authorized evaluation environment is available. Report free/local runs separately from paid or production runs if those are ever performed.
+
+## 9. Reasoning-allocation evaluation
+
+The optional reasoning-allocation work adds [`routing-cases.yaml`](routing-cases.yaml).
+
+For each routing case, compare four conditions where the platform permits them:
+
+1. fast/low baseline;
+2. fixed medium reasoning;
+3. fixed high/maximum reasoning;
+4. PRP-routed reasoning.
+
+Report substantive score and critical failures together with reasoning tokens (if exposed), total tokens, wall-clock latency and estimated cost (if available). Do not substitute a composite metric for the underlying measurements.
+
+Also classify routing errors:
+
+- **under-escalation:** insufficient rigor causes or materially contributes to a substantive error;
+- **over-escalation:** added reasoning/process materially increases cost or latency without a task-relevant quality benefit.
+
+The target hypothesis is that PRP routing can approach high-effort substantive quality on a mixed workload while using less reasoning compute than routing every task at high effort. This is a hypothesis to test, not a current performance claim.
+
+All routing cases remain **unexecuted** until named model runs are recorded with the provenance requirements above.
+
+## 10. Compression and control-profile regressions
+
+[control-cases.json](control-cases.json) adds 16 targeted cases for floors, user overrides, cumulative components, proportionality, blocked verification, version-lineage errors, revoked authority and false assurance from control headers.
+
+Each case has two separate uses:
+
+- `selection_fixture` and `expected_selection` are supplied classifications and arithmetic expectations for the offline helper. Executing them is a **deterministic consistency test**, not a model evaluation or a test of intent classification.
+- `input`, `expected_behavior` and `failure_criteria` define an **unexecuted behavioral task**. Send only `input` and the task's declared artifacts to the model. Keep fixture annotations, rubric and expected answers out of the task context.
+
+Run behavior comparisons in fresh, matched contexts. Disable unrelated custom instructions/memory where possible and record anything the platform does not expose. For the lineage case, supply both full protocol artifacts and record their SHA-256 hashes; do not compare only a README or the advanced reference against the entire source.
+
+Recommended controlled conditions:
+
+1. the same model without PRP;
+2. the same model with the pinned pre-control public package;
+3. the same model with this compact control profile;
+4. optionally, the same model with the original v3.1 source when the evaluator has authorized access.
+
+The original source is not bundled. Its provenance is in [source-lineage.md](../references/source-lineage.md). Record exact PRP file hashes, source revision, instruction placement, loaded references and activation behavior for each condition. Do not compare different models or different tools and attribute the difference to compression.
+
+Keep provider effort fixed in the instruction comparison. Test compute routing separately under Section 9. Counterbalance condition order, predeclare repetitions (for example three fresh runs per case), retain every output and error, and disclose truncation, unavailable settings and context limits. Do not silently drop failed runs. Repetition counts are a test design choice, not a confidence guarantee.
+
+Use the substantive rubric above with case-specific criteria. A polished header does not compensate for an invented source, permission or completed action. Score output-format compliance separately. For simple tasks, unnecessary questions, procedural scaffolding and invented research count against proportionality. For consequential tasks, brevity cannot excuse an unperformed decisive check.
+
+Retain model/provider/version or unavailable status; timestamps; actual settings and tool access; full inputs, outputs and source hashes; token/latency/cost measurements including routing/retry overhead; evaluator identity or model/version, rubric and evaluation prompt; disagreements and adjudication. Do not publish private task data without permission.
+
+The local unit tests and package checks are executable now. **No model behavior or efficiency evaluations are reported as executed by this update.** No paid inference calls are required by the checks. A later behavioral run must record provenance and results before changing that status.

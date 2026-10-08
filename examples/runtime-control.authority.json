@@ -1,0 +1,35 @@
+{
+  "profile_version": "1.0.0",
+  "assessment_kind": "selection_only",
+  "proposed_level": 2,
+  "requested_depth": "fast",
+  "mandatory_minimum_level": 3,
+  "effective_level": 3,
+  "matched_rule_ids": [
+    "authority-sensitive"
+  ],
+  "override_outcome": "clamped_to_floor",
+  "required_components": [
+    "source_preservation",
+    "scope_preservation",
+    "no_fabrication",
+    "claim_integrity",
+    "authority_boundary",
+    "agency_preservation",
+    "format_compliance",
+    "contradiction_check",
+    "stabilization",
+    "objective_and_assumptions",
+    "world_model_binding",
+    "evidence_hierarchy",
+    "alternatives",
+    "type_discipline",
+    "negative_records",
+    "source_quality",
+    "contradiction_analysis",
+    "uncertainty_classification",
+    "authority_validation",
+    "verification",
+    "decision_record"
+  ]
+}
