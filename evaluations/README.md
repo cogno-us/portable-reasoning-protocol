@@ -221,3 +221,22 @@ Use the substantive rubric above with case-specific criteria. A polished header 
 Retain model/provider/version or unavailable status; timestamps; actual settings and tool access; full inputs, outputs and source hashes; token/latency/cost measurements including routing/retry overhead; evaluator identity or model/version, rubric and evaluation prompt; disagreements and adjudication. Do not publish private task data without permission.
 
 The local unit tests and package checks are executable now. **No model behavior or efficiency evaluations are reported as executed by this update.** No paid inference calls are required by the checks. A later behavioral run must record provenance and results before changing that status.
+
+## Paired evaluation preregistration
+
+`paired-case.json` and `tools/paired_evaluation.py` implement K6 from the supplied
+Moltbook 101526_A review dated 15 October 2026. The synthetic null has likelihood
+ratio 1 under the frozen author model; its discriminating twin changes the optimal
+action. Score both together, including explicit delay and gathering costs and the
+stopping threshold. Deferral is valid when it minimizes declared expected loss.
+
+The primary reference is the preregistered author model. Preserve an agent-stated
+model disagreement as a separate sensitivity analysis rather than changing the
+primary model after observing outputs. Robustness cases predeclare a likelihood
+perturbation and score direction only. Freeze case/prompt/protocol/model hashes,
+settings, trials, evaluator and raw responses before reporting a behavioral result.
+Do not place answer annotations or expected outputs in the model's task input.
+
+The Python tests establish scorer arithmetic and joint-case consistency only.
+No model evaluation, paid inference or PRP effectiveness finding is reported.
+The existing matched-baseline, independent-use, provenance and cost rules apply.
