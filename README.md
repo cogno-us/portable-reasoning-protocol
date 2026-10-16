@@ -23,7 +23,7 @@
 
 PRP is a reusable SKILL.md-based instruction package for general-purpose AI work. It asks a model to calibrate rigor to consequence, distinguish evidence from inference, state material uncertainty and preserve the user's agency. These are behavioral instructions, not runtime enforcement.
 
-**Implementation status:** the baseline scope below describes merged public reference work. New control-profile and allocation work is component-local and is not qualified by the older hub selection cited here. Component acceptance, selection in the hub and execution of a qualification are separate facts. The selected revision for this component is `cb137f028e92448a56e785e3d4ea074b444fa225`; the [hub lock](https://github.com/cogno-us/cognous-open-control-stack/blob/5737267d94d2b445735c95e8480a31de73a2abe8/component-lock.json) is the source of that integration choice.
+**Implementation status:** public reference work. The [current component lock](https://github.com/cogno-us/cognous-open-control-stack/blob/main/component-lock.json) defines the selected integration; a component merge does not automatically change that selection or approve deployment.
 
 ## Purpose and intended users
 
@@ -57,7 +57,7 @@ Potential benefits include:
 - **More efficient agent loops:** reasoning can be concentrated in planning, verification and replanning instead of every bounded execution step.
 - **Stable integration surface:** a versioned `ReasoningPlan` allows runtimes to evolve model mappings without rewriting the core PRP protocol.
 
-These are architectural benefits and testable hypotheses, not claims of measured cost savings or model-independent performance. The repository's routing evaluation cases remain unexecuted until named model runs are recorded.
+These are architectural benefits and testable hypotheses, not claims of measured cost savings or model-independent performance. Consult the central test hub for named-model evaluation records.
 
 ## Compact operational control
 
@@ -73,7 +73,7 @@ An optional [offline helper](tools/runtime_control.py) checks selection arithmet
 python tools/runtime_control.py --proposed-level 2 --requested-depth fast --rule authority-sensitive
 ```
 
-For full semantics, read [runtime control](references/runtime-control.md). For regression tasks, read [control cases](evaluations/control-cases.json). Model comparisons remain unexecuted; no inference cost was incurred for the offline checks.
+For full semantics, read [runtime control](references/runtime-control.md). For regression tasks, read [control cases](evaluations/control-cases.json). Named-model results and accounting belong in the central test hub.
 
 ## How it works
 
@@ -94,15 +94,15 @@ These are behavioral protocol semantics. They do not add runtime enforcement, pe
 
 Read [SKILL.md](SKILL.md), then follow [INSTALLATION.md](INSTALLATION.md) for the platform's supported instruction mechanism. Start with one ordinary analysis task; request explicit assumptions and evidence status rather than a fixed answer length. Treat platform-specific activation instructions as configuration guidance, not evidence that a model follows every rule. Use [the evaluation protocol](evaluations/README.md) to measure behavior under a named model/version and configuration. For optional runtime allocation, read [Reasoning Effort and Allocation](references/reasoning-effort.md) and the provider-neutral [ReasoningPlan schema](schemas/reasoning-plan.schema.json).
 
-## Evidence and supported scope
+## Scope and compatibility
 
-The repository defines PRP v1.1. The hub currently selects an earlier pinned PRP revision as an optional layer; `component-lock.json` remains authoritative for the integrated version. Its recorded checks are static artifact/JSON checks only. The [evaluation suite](evaluations/README.md) defines baseline-versus-PRP comparisons; it supplies no general claim of measured uplift, safety or model-independent efficacy.
+The repository defines PRP v1.1. The hub currently selects an earlier pinned PRP revision as an optional layer; `component-lock.json` remains authoritative for the integrated version. The [evaluation suite](evaluations/README.md) defines baseline-versus-PRP comparisons; it supplies no general claim of measured uplift, safety or model-independent efficacy.
 
-The accepted [hub persistence-generation evidence](https://github.com/cogno-us/cognous-open-control-stack/blob/5737267d94d2b445735c95e8480a31de73a2abe8/examples/control-plane-store-adoption/qualification-summary.json) records 915 Python tests in each of two repetitions, 35 matrix entries satisfying their gates and 120 separate mocked OpenShell tests. Those are aggregate hub results, not a per-component test count or a claim of production readiness. Optional behavioral layers receive static checks only. The [support ledger](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/release-status.md) separates implementation, execution and adoption.
+Test results, run commentary and historical qualification records are maintained in the [central test hub](https://github.com/cogno-us/cognous-stack-qualification/blob/main/results/readme-commentary/index.md). Read them against their recorded source revisions; source selection and deployment approval are separate decisions.
 
 ## Limitations and deployment decisions
 
-PRP does not add persistent state, authenticate institutions, intercept tools, create a sandbox or guarantee truthfulness. The hub performs static artifact checks only. Model-behavior efficacy must be measured for named models/configurations and is not established by installation or schema validity.
+PRP does not add persistent state, authenticate institutions, intercept tools, create a sandbox or guarantee truthfulness. Static artifact checks cannot establish model-behavior efficacy. Model-behavior efficacy must be measured for named models/configurations and is not established by installation or schema validity.
 
 Review original artifacts and their exact source revisions before extending a claim to a new environment. New dependencies, authority sources, destinations or enforcement mechanisms need their own compatibility and qualification. A passing reference case is not a certification of an enterprise deployment.
 
@@ -177,3 +177,6 @@ execution authority.
 ## Repository locations
 
 See the [repository rename map and compatibility notes](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/repository-renames.md) for current component URLs. Existing package names, schema identifiers and retained producer identities are unchanged.
+
+<!-- Retained anchors for existing documentation links. -->
+<a id="evidence-and-supported-scope"></a>
