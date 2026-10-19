@@ -3,7 +3,7 @@
 ──────────────────────────────────────────────────
    __________  _______   ______  __  _______
   / ____/ __ \/ ____/ | / / __ \/ / / / ___/
- / /   / / / / / __/  |/ / / / / / / /\__ \
+ / /   / / / / / __/  |/ / / / / / /\__ \
 / /___/ /_/ / /_/ / /|  / /_/ / /_/ /___/ /
 \____/\____/\____/_/ |_/\____/\____//____/
            PORTABLE REASONING PROTOCOL
@@ -17,21 +17,135 @@
 
 **Portable instructions for evidence-bounded reasoning.**
 
-**Stack group: 06 · Reasoning & Human Oversight.** See the [six-group component map](#cognous-stack-components).
+**Status:** optional reasoning protocol (side group of the [stack map](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/stack-map.md)). Label: merged. In the hub lock as `prp` with `optional: true`; the lock records no interface for it, and it is not selected for enforcement. Behavioral instructions only. <!-- pin-round: lock revision and "earlier pinned revision" statements in this file are refreshed with the hub lock -->
 
-## Overview
+**Start with [SKILL.md](SKILL.md)**, the instruction entrypoint. Then see [Quick start](#quick-start) to run the offline helpers, and [Documentation index](#documentation-index) for every page in this repository.
 
-PRP is a reusable SKILL.md-based instruction package for general-purpose AI work. It asks a model to calibrate rigor to consequence, distinguish evidence from inference, state material uncertainty and preserve the user's agency. These are behavioral instructions, not runtime enforcement.
+## What it is, who it is for, what it does not do
+
+**What it is.** PRP is a reusable SKILL.md-based instruction package for general-purpose AI work. It asks a model to calibrate rigor to consequence, distinguish evidence from inference, state material uncertainty and preserve the user's agency. These are behavioral instructions, not runtime enforcement.
+
+**Who it is for.** Teams that want a shared way to ask for evidence discipline without making every routine task a long report. Fluent output can hide unsupported certainty, invented sources, unstated assumptions or a premature conclusion. Engineers can inspect the schemas, offline tools and evaluation cases; architecture, security and governance reviewers can examine the boundary and evidence. Evaluate this component for its named responsibility rather than as a complete governance platform.
+
+**What it does not do.** PRP does not add persistent state, authenticate institutions, intercept tools, create a sandbox, enforce permissions, control provider compute or guarantee truthfulness. It does not enforce authorization or substitute for human oversight. See [Limits](#limitations-and-deployment-decisions).
 
 **Implementation status:** public reference work. The [current component lock](https://github.com/cogno-us/cognous-open-control-stack/blob/main/component-lock.json) defines the selected integration; a component merge does not automatically change that selection or approve deployment.
 
-## Purpose and intended users
+## Where it fits
 
-Fluent output can hide unsupported certainty, invented sources, unstated assumptions or a premature conclusion. Teams need a shared way to ask for evidence discipline without requiring every routine task to become a long report.
+PRP sits in the "Optional reasoning protocols" side group, beside [Research Intelligence Protocol](https://github.com/cogno-us/research-intelligence-protocol) and [TFA Protocol (S43)](https://github.com/cogno-us/truth-freedom-agency-protocol). It is independently usable and needs no other Cognous component; [STACK_INTEGRATION.md](STACK_INTEGRATION.md) describes an optional information handoff to governed workflows. It is not part of the refund workflow and does not change any selected interface. The [stack map](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/stack-map.md) is the canonical map; the table below is a copy of it.
 
-Engineers can inspect the reference contracts and examples; enterprise architecture, security and governance reviewers can examine the boundary and evidence. Evaluate this component for its named responsibility rather than as a complete governance platform.
+<!-- stack-map-block:start -->
+### Cognous stack components
 
-## Key features
+The Open Control Stack keeps five responsibility groups and two side groups. The groups organize responsibilities. They are not an execution sequence or a requirement to install every component. The canonical map, with one row per repository, is the hub [stack map](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/stack-map.md); names are defined in [naming](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/naming.md) and commands and profiles per repository are in [profiles and tools](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/profiles-and-tools.md). The map uses four labels: merged, selected, known limit and proposed. The [hub lock](https://github.com/cogno-us/cognous-open-control-stack/blob/main/component-lock.json) defines the selected integration; [release status](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/release-status.md) defines its evidence and limits.
+
+| Group | Components |
+| --- | --- |
+| **01 Knowledge & Provenance** | [Evidence Registry (The Index)](https://github.com/cogno-us/cognous-evidence-registry) · [Evidence Attestation (BitRep)](https://github.com/cogno-us/cognous-evidence-attestation) |
+| **02 Institutional Governance** | [Institutional Governance (Alvorada)](https://github.com/cogno-us/cognous-institutional-governance) |
+| **03 Declaration & Policy Control** | [Action Manifest](https://github.com/cogno-us/cognous-action-manifest) · [Control Plane](https://github.com/cogno-us/cognous-control-plane) |
+| **04 Constrained Execution** | [Execution Runtime](https://github.com/cogno-us/cognous-execution-runtime) |
+| **05 Replay & Evidence** | [Replay Bundle](https://github.com/cogno-us/cognous-replay-bundle) · [Governance Evidence Pack](https://github.com/cogno-us/cognous-governance-evidence-pack) · [ODES](https://github.com/cogno-us/open-decision-evidence-standard) |
+| **Cross-cutting exchange** | [Governed Exchange (GAX/IMX)](https://github.com/cogno-us/cognous-governed-exchange) |
+| **Optional reasoning protocols** (side group) | [Portable Reasoning Protocol (PRP)](https://github.com/cogno-us/portable-reasoning-protocol) · [Research Intelligence Protocol](https://github.com/cogno-us/research-intelligence-protocol) · [TFA Protocol (S43)](https://github.com/cogno-us/truth-freedom-agency-protocol) |
+| **Tooling and qualification** (side group) | [Ergonomics (`cognous-ocs`)](https://github.com/cogno-us/cognous-open-control-stack-ergonomics) · [Verifier](https://github.com/cogno-us/cognous-open-control-stack-verifier) · [Orchestrator](https://github.com/cogno-us/cognous-stack-orchestrator) · [Qualification](https://github.com/cogno-us/cognous-stack-qualification) |
+
+The hub, [cognous-open-control-stack](https://github.com/cogno-us/cognous-open-control-stack), holds the component lock and the canonical documentation. Execution Runtime is the repository formerly named Moltbot Safe; see [naming](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/naming.md). PRP, Research Intelligence Protocol and TFA Protocol are optional behavioral instructions; they do not enforce authorization or substitute for human oversight. A signature, registry entry, message receipt or evidence summary does not grant execution authority.
+
+Last checked against `component-lock.json` at hub commit `dcc9bd7533ef`. <!-- pin-round: refresh this commit with the hub stack map -->
+<!-- stack-map-block:end -->
+
+## Quick start
+
+Prerequisites: Python 3 (verified with 3.13; the offline tools use only the standard library; the package check also needs `PyYAML` and `jsonschema`, pinned in [requirements-dev.txt](requirements-dev.txt)). The commands were run from a clean clone in a fresh virtual environment. No model, network or account is needed.
+
+```sh
+git clone https://github.com/cogno-us/portable-reasoning-protocol
+cd portable-reasoning-protocol
+python -m venv .venv && . .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+python tools/runtime_control.py --proposed-level 2 --requested-depth fast --rule authority-sensitive
+python tools/validate_package.py
+python -m unittest discover -s tests
+```
+
+Expected: the selection helper exits 0 and prints a JSON record whose first lines are
+
+```json
+{
+  "profile_version": "1.0.0",
+  "assessment_kind": "selection_only",
+  "proposed_level": 2,
+  "requested_depth": "fast",
+  "mandatory_minimum_level": 3,
+  "effective_level": 3,
+```
+
+and which ends with `"override_outcome": "clamped_to_floor"` and the list of `required_components`. A Fast request is clamped to the floor of the matched rule. The package check exits 0 and prints `PASS: 7 JSON, 3 YAML, 120 local Markdown links/anchors; examples and frontmatter` followed by `Static checks only. No model evaluations, source truth or authorization verified.` The unit tests finish in about two seconds with `OK` (25 tests at this revision). <!-- pin-round: counts reflect the repository head at the time of writing -->
+
+To check an existing record instead of generating one: `python tools/runtime_control.py --validate examples/runtime-control.authority.json` prints `PASS: selection record is consistent; behavior and authority are not verified`.
+
+**What this does not prove.** These commands check selection arithmetic over supplied rule matches, file structure and links. They do not evaluate natural-language classification, model compliance, source truth or authorization. Model behavior is established only by evaluation under a named model, version and configuration (see [the evaluation protocol](evaluations/README.md)).
+
+To use PRP itself, read [SKILL.md](SKILL.md), then follow [INSTALLATION.md](INSTALLATION.md) for the platform's supported instruction mechanism. Start with one ordinary analysis task; request explicit assumptions and evidence status rather than a fixed answer length. Treat platform-specific activation instructions as configuration guidance, not evidence that a model follows every rule. For optional runtime allocation, read [Reasoning Effort and Allocation](references/reasoning-effort.md) and the provider-neutral [ReasoningPlan schema](schemas/reasoning-plan.schema.json).
+
+## What ships
+
+| Item | Kind | Purpose | Status label |
+|---|---|---|---|
+| [SKILL.md](SKILL.md) | instruction entrypoint | Compact runtime instructions: control profile, rule floors, safeguards. | merged |
+| [references/prp-core.md](references/prp-core.md) | reference | Advanced reference for consequential work. | merged |
+| [references/runtime-control.md](references/runtime-control.md) | reference | Semantics of the control profile 1.0.0 selection record. | merged |
+| [references/reasoning-effort.md](references/reasoning-effort.md) | reference | Provider-neutral reasoning allocation. | merged |
+| [references/source-lineage.md](references/source-lineage.md) | reference | Source preservation map for the public adaptation. | merged |
+| [`tools/runtime_control.py`](tools/runtime_control.py) | command (offline, standard library) | Computes or validates a selection record: `--proposed-level`, `--requested-depth`, `--rule`, `--validate`. Verified above. | merged |
+| [`tools/paired_evaluation.py`](tools/paired_evaluation.py) | command (offline, standard library) | Scores a paired null/discriminating response set against the preregistered case: `--case`, `--responses`. Output ends `"behavioral_efficacy_established": false`. | merged |
+| [`tools/validate_package.py`](tools/validate_package.py) | command (needs `PyYAML`, `jsonschema`) | Structural check of JSON, YAML, frontmatter, examples and local Markdown links. | merged |
+| [schemas/runtime-control.schema.json](schemas/runtime-control.schema.json) | schema | Selection-only record shape. | merged |
+| [schemas/reasoning-plan.schema.json](schemas/reasoning-plan.schema.json) | schema | Provider-neutral `ReasoningPlan` v1.0. | merged |
+| [policies/runtime-control.v1.json](policies/runtime-control.v1.json) | policy data | Rule IDs, floors, depth mapping and cumulative components. | merged |
+| [examples/runtime-control.authority.json](examples/runtime-control.authority.json) | example | A selection record for an authority-sensitive task. | merged |
+| [examples/reasoning-plan.conflicting-evidence.json](examples/reasoning-plan.conflicting-evidence.json) | example | A `ReasoningPlan` for conflicting evidence. | merged |
+| [evaluations/cases.yaml](evaluations/cases.yaml) | evaluation cases | 10 baseline-versus-PRP behavioral cases; unexecuted. | merged |
+| [evaluations/routing-cases.yaml](evaluations/routing-cases.yaml) | evaluation cases | 5 routing cases for under- and over-escalation; unexecuted. | merged |
+| [evaluations/control-cases.json](evaluations/control-cases.json) | evaluation cases | 16 control-profile regression cases; unexecuted. | merged |
+| [evaluations/paired-case.json](evaluations/paired-case.json) | evaluation case | Preregistered paired case for the paired scorer. | merged |
+| [adapters/](adapters/README.md) | guidance | Informative provider mappings ([Anthropic](adapters/anthropic.md), [Gemini](adapters/gemini.md), [OpenAI](adapters/openai.md)). | merged |
+| [agents/openai.yaml](agents/openai.yaml) | metadata | Display metadata for OpenAI-style skill listings. | merged |
+| [tests/](tests) | tests | `test_runtime_control.py` and `test_paired_evaluation.py`: arithmetic and scorer consistency only. | merged |
+
+PRP has no installable package, no profile and no contract draft; "behavioral evaluation status" is `unexecuted` in every case file. Unexecuted means no model evaluation result is reported.
+
+## Documentation index
+
+This repository has few pages, so the index is here rather than in a separate `docs/README.md`. Every page is linked below.
+
+| Page | Read it for |
+|---|---|
+| [SKILL.md](SKILL.md) | The instructions themselves. |
+| [INSTALLATION.md](INSTALLATION.md) | Platform installation and activation. |
+| [STACK_INTEGRATION.md](STACK_INTEGRATION.md) | Optional information handoff to governed workflows. |
+| [references/](references/prp-core.md) | [Core reference](references/prp-core.md), [runtime control](references/runtime-control.md), [reasoning effort](references/reasoning-effort.md), [source lineage](references/source-lineage.md). |
+| [evaluations/README.md](evaluations/README.md) | Evaluation protocol and paired preregistration. |
+| [adapters/README.md](adapters/README.md) | Provider adapter guidance. |
+| [CHANGELOG.md](CHANGELOG.md) | Version history (v1.1 and the control profile 1.0.0). |
+| [docs/control-profile-checkpoint.md](docs/control-profile-checkpoint.md) | Historical checkpoint for the control profile, retained as written. |
+| [Business overview](collateral/business-collateral.md) and [one-page overview](collateral/one-page-overview.md) | Nontechnical introduction to this component's role and evidence limits, not additional runtime features. |
+
+Reading paths: **adopter** SKILL.md, INSTALLATION.md, evaluations/README.md. **Integrator** STACK_INTEGRATION.md, references/runtime-control.md, schemas. **Reviewer** this README's limits, CHANGELOG.md, source lineage. Shared names and labels are in the hub [naming](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/naming.md) page.
+
+## How it works and design notes
+
+This section keeps the longer descriptions that earlier READMEs placed first.
+
+### How it works
+
+A user supplies a decision question and asks PRP to distinguish facts, assumptions and remaining uncertainty. The assistant proposes options at a depth appropriate to the task. If a consequential action follows, the deployment must separately check authority and constrain execution; a reasoning conclusion or statement of confidence cannot replace those checks.
+
+A valid signature, chain inclusion, message receipt, reasoning instruction or evidence-package digest does not authorize execution. Institutional authority must be supplied and evaluated through the appropriate trusted boundary.
+
+### Key features
 
 | Capability | Implemented or specified responsibility |
 |---|---|
@@ -42,7 +156,7 @@ Engineers can inspect the reference contracts and examples; enterprise architect
 | **Agency preservation** | Present material tradeoffs and avoid manipulative pressure or unnecessary requests. |
 | **Optional handoff** | Preserve proposal/evidence distinctions for downstream systems without creating authority. |
 
-## Engineering benefits
+### Engineering benefits
 
 The reasoning-allocation additions are designed to make PRP easier to operationalize without binding it to a specific model vendor.
 
@@ -59,7 +173,7 @@ Potential benefits include:
 
 These are architectural benefits and testable hypotheses, not claims of measured cost savings or model-independent performance. Consult the central test hub for named-model evaluation records.
 
-## Compact operational control
+### Compact operational control
 
 PRP retains its **public v1.0 lineage**, adapted from the mature v3.1 source. The new **control profile 1.0.0** makes minimum scrutiny, user overrides and required checks explicit without requiring a long prompt or a visible governance header on every answer. See the [source preservation map](references/source-lineage.md).
 
@@ -75,13 +189,7 @@ python tools/runtime_control.py --proposed-level 2 --requested-depth fast --rule
 
 For full semantics, read [runtime control](references/runtime-control.md). For regression tasks, read [control cases](evaluations/control-cases.json). Named-model results and accounting belong in the central test hub.
 
-## How it works
-
-A user supplies a decision question and asks PRP to distinguish facts, assumptions and remaining uncertainty. The assistant proposes options at a depth appropriate to the task. If a consequential action follows, the deployment must separately check authority and constrain execution; a reasoning conclusion or statement of confidence cannot replace those checks.
-
-A valid signature, chain inclusion, message receipt, reasoning instruction or evidence-package digest does not authorize execution. Institutional authority must be supplied and evaluated through the appropriate trusted boundary.
-
-## v1.1 alignment
+### v1.1 alignment
 
 PRP v1.1 incorporates two implementation-derived clarifications while preserving the existing core invariants:
 
@@ -90,15 +198,13 @@ PRP v1.1 incorporates two implementation-derived clarifications while preserving
 
 These are behavioral protocol semantics. They do not add runtime enforcement, persistence, hashing, identity, authorization, or execution controls.
 
-## Getting started
-
-Read [SKILL.md](SKILL.md), then follow [INSTALLATION.md](INSTALLATION.md) for the platform's supported instruction mechanism. Start with one ordinary analysis task; request explicit assumptions and evidence status rather than a fixed answer length. Treat platform-specific activation instructions as configuration guidance, not evidence that a model follows every rule. Use [the evaluation protocol](evaluations/README.md) to measure behavior under a named model/version and configuration. For optional runtime allocation, read [Reasoning Effort and Allocation](references/reasoning-effort.md) and the provider-neutral [ReasoningPlan schema](schemas/reasoning-plan.schema.json).
-
-## Scope and compatibility
+## Compatibility and selection
 
 The repository defines PRP v1.1. The hub currently selects an earlier pinned PRP revision as an optional layer; `component-lock.json` remains authoritative for the integrated version. The [evaluation suite](evaluations/README.md) defines baseline-versus-PRP comparisons; it supplies no general claim of measured uplift, safety or model-independent efficacy.
 
 Test results, run commentary and historical qualification records are maintained in the [central test hub](https://github.com/cogno-us/cognous-stack-qualification/blob/main/results/readme-commentary/index.md). Read them against their recorded source revisions; source selection and deployment approval are separate decisions.
+
+See the [repository rename map and compatibility notes](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/repository-renames.md) for current component URLs. Existing package names, schema identifiers and retained producer identities are unchanged.
 
 ## Limitations and deployment decisions
 
@@ -106,33 +212,13 @@ PRP does not add persistent state, authenticate institutions, intercept tools, c
 
 Review original artifacts and their exact source revisions before extending a claim to a new environment. New dependencies, authority sources, destinations or enforcement mechanisms need their own compatibility and qualification. A passing reference case is not a certification of an enterprise deployment.
 
-## Repository guide
+Known limits, as labelled facts: **known limit** PRP is behavioral guidance and cannot be enforced by this repository. **known limit** Model-behavior efficacy is unmeasured here; every case file is `unexecuted`. **known limit** The offline helpers do not classify tasks. **proposed** Named-model evaluation records belong in the central test hub. Shared stack-level limits are stated in the hub [guarantees and limits](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/guarantees-and-limits.md).
 
-Use these sources for details; their historical checkpoints retain the status and scope of the work they recorded:
+## Contributing, licence, attribution and security
 
-- [SKILL.md](SKILL.md)
-- [INSTALLATION.md](INSTALLATION.md)
-- [STACK_INTEGRATION.md](STACK_INTEGRATION.md)
-- [references/reasoning-effort.md](references/reasoning-effort.md)
-- [references/runtime-control.md](references/runtime-control.md)
-- [references/source-lineage.md](references/source-lineage.md)
-- [schemas/runtime-control.schema.json](schemas/runtime-control.schema.json)
-- [policies/runtime-control.v1.json](policies/runtime-control.v1.json)
-- [evaluations/control-cases.json](evaluations/control-cases.json)
-- [schemas/reasoning-plan.schema.json](schemas/reasoning-plan.schema.json)
-- [examples/reasoning-plan.conflicting-evidence.json](examples/reasoning-plan.conflicting-evidence.json)
-- [adapters/README.md](adapters/README.md)
-- [evaluations/README.md](evaluations/README.md)
-- [evaluations/cases.yaml](evaluations/cases.yaml)
-- [evaluations/routing-cases.yaml](evaluations/routing-cases.yaml)
+Propose focused changes through repository issues and pull requests. Keep evidence-linked claims, preserve historical records and separate proposed features from accepted implementation. Run the three commands in the quick start before opening a pull request. This repository has no CI workflow of its own.
 
-For a nontechnical introduction, read the [business overview](collateral/business-collateral.md) and [one-page overview](collateral/one-page-overview.md). Both describe this component's role and evidence limits, not additional runtime features.
-
-## Contributing and attribution
-
-Propose focused changes through repository issues and pull requests. Keep evidence-linked claims, preserve historical records and separate proposed features from accepted implementation.
-
-See [LICENSE](LICENSE) and [attribution](NOTICE) for the existing terms and third-party scope. Developed by [Cognous](https://cogno.us); no licensing change is part of this documentation update.
+See [LICENSE](LICENSE) and [attribution](NOTICE) for the existing terms and third-party scope. Developed by [Cognous](https://cogno.us); no licensing change is part of this documentation update. For reporting a concern, see the hub [security reporting and triage](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/security-reporting-and-triage.md) page.
 
 ---
 
@@ -145,38 +231,6 @@ Selected external sources from the October 2026 research review. These inform ev
 - [John W. Creswell and J. David Creswell. *Research Design: Qualitative, Quantitative, and Mixed Methods Approaches*, fifth edition. SAGE (2018)](https://edge.sagepub.com/creswellrd5e). Research-methods reference for explicit questions, comparison designs and interpretation limits.
 
 See the [research bibliography](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/research-bibliography.md) for review scope and source-verification limits.
-
-## Cognous stack components
-
-The six groups organize component responsibilities. They are not an execution
-sequence or a requirement to install every component. The [hub lock](https://github.com/cogno-us/cognous-open-control-stack/blob/main/component-lock.json)
-defines the selected integration; [release status](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/release-status.md)
-defines its evidence and limits.
-
-| Group | Components |
-| --- | --- |
-| **01 · Knowledge & Provenance** | [The Index (Evidence Registry)](https://github.com/cogno-us/cognous-evidence-registry) · [BitRep (Evidence Attestation)](https://github.com/cogno-us/cognous-evidence-attestation) |
-| **02 · Institutional Governance** | [Alvorada (Institutional Governance)](https://github.com/cogno-us/cognous-institutional-governance) · authority contracts |
-| **03 · Declaration & Policy Control** | [Action Manifest](https://github.com/cogno-us/cognous-action-manifest) · [Control Plane](https://github.com/cogno-us/cognous-control-plane) |
-| **04 · Constrained Execution** | [Execution Runtime (Moltbot Safe)](https://github.com/cogno-us/cognous-execution-runtime) |
-| **05 · Replay & Evidence** | [Replay Bundle](https://github.com/cogno-us/cognous-replay-bundle) · [Governance Evidence Pack](https://github.com/cogno-us/cognous-governance-evidence-pack) · [ODES](https://github.com/cogno-us/open-decision-evidence-standard) |
-| **06 · Reasoning & Human Oversight** | [PRP](https://github.com/cogno-us/portable-reasoning-protocol) · [Research Intelligence](https://github.com/cogno-us/research-intelligence-protocol) · [TFA](https://github.com/cogno-us/truth-freedom-agency-protocol) |
-
-**Cross-cutting exchange:** [Governed Exchange (GAX/IMX)](https://github.com/cogno-us/cognous-governed-exchange) connects
-governed messages, recipient assessment and continuity across the groups. It is
-separate from Alvorada's institutional authority framework.
-
-Execution Runtime and Moltbot Safe name the same repository here. The supported
-Cognous Python execution boundary remains distinct from the retained upstream
-application. PRP, Research Intelligence and TFA are optional behavioral
-instructions; they do not enforce authorization or substitute for human oversight.
-A signature, registry entry, message receipt or evidence summary does not grant
-execution authority.
-
-
-## Repository locations
-
-See the [repository rename map and compatibility notes](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/repository-renames.md) for current component URLs. Existing package names, schema identifiers and retained producer identities are unchanged.
 
 <!-- Retained anchors for existing documentation links. -->
 <a id="evidence-and-supported-scope"></a>
